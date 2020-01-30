@@ -37,7 +37,7 @@ public class ElevatorSystem
 		{
 			try
 			{
-				Thread.sleep(1000);
+				Thread.sleep(1000);//door opening and closing delay 1s
 			}
 			catch (InterruptedException e)
 			{
