@@ -11,18 +11,11 @@ public class ElevatorSystem
 {
 	private ArrayList<Integer> selectedFloors = new ArrayList<>();
 	private boolean direction;
-	private boolean doorOpenClose;
+	private boolean doorOpenClose;//state of the door
 	private Request request;
-	private int id;
-	
-	/**
-	 * doorOpenClose class, toggles the opening and closing of the door
-	 */
-	private void doorOpenClose()
-	{
-		doorOpenClose = !doorOpenClose;
-	}
-	
+	private int id;//elevator car id
+	private int currFloor;//floor the car is currently on
+
 	/**
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
@@ -33,6 +26,14 @@ public class ElevatorSystem
 	}
 	
 	/**
+	 * doorOpenClose class, toggles the opening and closing of the door
+	 */
+	private void doorOpenClose()
+	{
+		doorOpenClose = !doorOpenClose;
+	}
+	
+	/**
 	 * add requests to stop at specific floors
 	 * @param floor: which floor do you want to stop at
 	 */
@@ -40,6 +41,11 @@ public class ElevatorSystem
 	{
 		selectedFloors.add(floor);
 		
+	}
+	
+	private void goToFloor(int floor)
+	{
+		currFloor = floor;
 	}
 	
 	/**
