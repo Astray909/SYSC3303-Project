@@ -9,10 +9,17 @@ public class ElevatorSystem
 {
 	private List selectedFloors = new ArrayList<>();
 	private boolean direction;
+	private boolean doorOpenClose;
+	private Request request = new Request();
 	private int id;
 	
 	private void doorOpenCose()
 	{
-		//1234
+		doorOpenClose = !doorOpenClose;
+	}
+	
+	public void getTask(Request request)
+	{
+		request = this.request;
 	}
 }
