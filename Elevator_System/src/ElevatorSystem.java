@@ -27,7 +27,7 @@ public class ElevatorSystem
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
 	 */
-	public void getTask(Request request)
+	public void getRequest(Request request)
 	{
 		request = this.request;
 	}
