@@ -57,7 +57,7 @@ public class ElevatorSystem
 		{
 			try
 			{
-				Thread.sleep(1000);//door opening and closing delay 1s
+				Thread.sleep(1000);//door opening and closing delay 1s. testing commit shortcut
 			}
 			catch (InterruptedException e)
 			{
