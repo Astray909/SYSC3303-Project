@@ -15,22 +15,36 @@ public class ElevatorSystem
 	private Request request;
 	private int id;
 	
-	private void doorOpenCose()
+	/**
+	 * doorOpenClose class, toggles the opening and closing of the door
+	 */
+	private void doorOpenClose()
 	{
 		doorOpenClose = !doorOpenClose;
 	}
 	
+	/**
+	 * fetch the specific task
+	 * @param request: Request type request, what kind of request
+	 */
 	public void getTask(Request request)
 	{
 		request = this.request;
 	}
 	
+	/**
+	 * add requests to stop at specific floors
+	 * @param floor: which floor do you want to stop at
+	 */
 	private void addFloorRequest(int floor)
 	{
 		selectedFloors.add(floor);
 		
 	}
 	
+	/**
+	 * starts thread
+	 */
 	public void run()
 	{
 		while(true)
