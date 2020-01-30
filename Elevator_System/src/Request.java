@@ -10,7 +10,8 @@ public class Request {
 	private int destFloor; 
 	private Time timeStamp;
 	
-	public Request() {
+	public Request()
+	{
 		
 	}
 
