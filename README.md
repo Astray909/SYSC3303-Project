@@ -4,4 +4,4 @@ BY:
 Zhe Ji,
 Simon Yacoub,
 Jia Chen Huang,
-Hassan Yusuf,
+Hassan Yusuf
