@@ -71,4 +71,18 @@ public class ElevatorSystem
 			}
 		}
 	}
+	
+	/**
+	 * Getter for the current floor
+	 */
+	public int getCurrFloor () {
+		 return this.currFloor;
+	 }
+	
+	/**
+	 * Getter for direction
+	 */
+	public boolean getDIrection () {
+		return this.direction;
+	}
 }
