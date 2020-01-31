@@ -9,7 +9,7 @@ public class Request {
 	private int sourceFloor;  // floor of the passenger
 	private int destFloor; // floor that passenger wants to go 
 	private Date timeStamp; //current time stamp once request created
-	private boolean direction; //represent up or down button, true-->up, false-->
+	private boolean direction; //represent up or down button, true-->up, false--> down
 	
 	public Request(int sourceFloor, boolean direction) {
 		
