@@ -11,6 +11,8 @@ public class Scheduler extends Thread {
 	
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	
+	public Scheduler() {}
+	
 	public Scheduler(List<ElevatorSystem> elevators) {
 		// TODO Auto-generated constructor stub
 		this.elevators = elevators;
@@ -43,6 +45,17 @@ public class Scheduler extends Thread {
 				desiredElevator.getRequest(request);
 			}
 		} 
+		
+	}
+	
+	private void handleDownRequest(Request remove) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void handleUpRequest(Request remove) {
+		// TODO Auto-generated method stub
 		
 	}
 	
