@@ -1,8 +1,8 @@
 import java.util.*;
 /**
  * The elevator system is responsible for transporting passengers.
- * It takes requests from Floor and Scheduler, move to designated floor, 
- * then travel to destination floor in desired direction
+ * It takes requests from Scheduler, 
+ * then travel to destination floor in the desired direction
  * @author Jia Chen Huang 101073186
  * @version January 30
  *
@@ -56,12 +56,6 @@ public class ElevatorSystem
 		currFloor = floor;
 	}
 	
-	private void passengerRequestSim()
-	{
-		int ran;
-		
-	}
-	
 	/**
 	 * starts thread
 	 */
@@ -74,9 +68,7 @@ public class ElevatorSystem
 				Thread.sleep(1000);//door opening and closing delay 1s.
 			}
 			catch (InterruptedException e)
-			{
-				
-			}
+			{}
 		}
 	}
 	
