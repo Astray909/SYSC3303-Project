@@ -10,8 +10,9 @@ import java.util.*;
 public class ElevatorSystem extends Thread
 {
 	private static final int ELEVATOR_CAPACITY = 8;//maximum capacity of an elevator
+	private static final int FLOOR_HEIGHT = 3;//distance between floors
 	private ArrayList<Integer> selectedFloors = new ArrayList<>();
-	private boolean direction;
+	private boolean direction;//true for up, false for down
 	private boolean doorOpenClose;//state of the door
 	private Request request;
 	private int id;//elevator car id
@@ -49,6 +50,11 @@ public class ElevatorSystem extends Thread
 	private void addFloorRequest(int floor)
 	{
 		selectedFloors.add(floor);
+		Collections.sort(selectedFloors);
+		if(!direction)
+		{
+			Collections.reverse(selectedFloors);
+		}
 		
 	}
 	
@@ -77,6 +83,21 @@ public class ElevatorSystem extends Thread
 	}
 	
 	/**
+	 * calculates the distance between floors
+	 * @return
+	 */
+	private int getFloorDistance()
+	{
+		int diff = Math.abs(selectedFloors.get(0) - currFloor);
+		return FLOOR_HEIGHT * diff;
+	}
+	
+	private int moveElevator()
+	{
+		return 0;
+	}
+	
+	/**
 	 * Getter for direction
 	 */
 	public boolean getDIrection ()
@@ -93,9 +114,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			delay();
-			goToFloor(50);
-			getCurrFloor();
+			//delay();
 		}
 	}
 	
