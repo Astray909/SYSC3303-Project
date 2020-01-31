@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class ElevatorSystem 
 {
+	private static final int ELEVATOR_CAPACITY = 8;
 	private ArrayList<Integer> selectedFloors = new ArrayList<>();
 	private boolean direction;
 	private boolean doorOpenClose;//state of the door
@@ -17,7 +18,7 @@ public class ElevatorSystem
 	private int currFloor;//floor the car is currently on
 
 	/**
-	 * Consrtructor for ElevatorSystem
+	 * Constructor for ElevatorSystem
 	 */
 	public ElevatorSystem (int id) {
 		this.id = id;
@@ -57,7 +58,7 @@ public class ElevatorSystem
 	
 	private void passengerRequestSim()
 	{
-		//int ran;
+		int ran;
 		
 	}
 	
