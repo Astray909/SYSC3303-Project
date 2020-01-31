@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class ElevatorSystem 
 {
-	private static final int ELEVATOR_CAPACITY = 8;
+	private static final int ELEVATOR_CAPACITY = 8;//maximum capacity of an elevator
 	private ArrayList<Integer> selectedFloors = new ArrayList<>();
 	private boolean direction;
 	private boolean doorOpenClose;//state of the door
