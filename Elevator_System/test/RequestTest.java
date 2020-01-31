@@ -46,4 +46,10 @@ public class RequestTest {
 	void toStringTest() {
 		assertEquals(request.toString(), time.toString() + " Source floor: " + 2 + "Directon: up");
 	}
+	
+	@Test
+	void downToStringTest() {
+		Request down = new Request(2, false);
+		assertEquals(down.toString(), time.toString() + " Source floor: " + 2 + "Directon: down");
+	}
 }

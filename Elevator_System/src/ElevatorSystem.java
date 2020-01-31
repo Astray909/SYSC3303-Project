@@ -92,5 +92,6 @@ public class ElevatorSystem
 	public boolean getDIrection ()
 	{
 		return this.direction;
+		//if the elevator is on the ground floor initially then the direction should be up not down
 	}
 }

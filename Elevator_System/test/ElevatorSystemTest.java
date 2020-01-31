@@ -1,12 +1,28 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*
+ * @Author Hassan Yusuf 101053489
+ * Tests public methods of ElevatorSystem class
+ */
 class ElevatorSystemTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
+	
+	ElevatorSystem elevator;
+	
+	@BeforeEach
+	void setUp() {
+		elevator = new ElevatorSystem(1);
 	}
 
+	@Test
+	void testGetCurrFloor() {
+		assertEquals(elevator.getCurrFloor(), 0);
+	}
+	
+	@Test
+	void testGetDirection() {
+		assertFalse(elevator.getDIrection());
+	}
 }
