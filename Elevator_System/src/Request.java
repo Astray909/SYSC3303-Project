@@ -40,7 +40,7 @@ public class Request {
 	 * @param destFloor
 	 * @return
 	 */
-	public int getDest (int destFloor) {
+	public int getDest () {//#changed No need for input as it is not used
 		return this.destFloor;
 	}
 	
@@ -69,7 +69,7 @@ public class Request {
 		} else {
 			dir = "down"; 
 		}
-		info = this.timeStamp.toString() +  " Source floor: " + Integer.toString((this.sourceFloor)) + "Directon: " + dir;
+		info = this.timeStamp.toString() +  " Source floor: " + this.sourceFloor + "Directon: " + dir;//#changed Integer.toString is not needed for this.sourceFloor
 		return info; 
 	}
 	
