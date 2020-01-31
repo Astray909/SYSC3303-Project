@@ -63,9 +63,4 @@ public class Floor implements Runnable {
 
 	}
 
-	public static void main(String[] args) {
-		Thread floor = new Thread(new Floor(0, new Scheduler()));
-		floor.start();
-	}
-
 }

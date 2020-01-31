@@ -17,6 +17,13 @@ public class ElevatorSystem
 	private int currFloor;//floor the car is currently on
 
 	/**
+	 * Consrtructor for ElevatorSystem
+	 */
+	public ElevatorSystem (int id) {
+		this.id = id;
+	}
+	
+	/**
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
 	 */
