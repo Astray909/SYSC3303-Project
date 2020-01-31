@@ -16,13 +16,18 @@ public class ElevatorSystem
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 
+	public ElevatorSystem(int id, Request request)
+	{
+		this.id = id;
+		this.request = request;
+	}
 	/**
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
 	 */
 	public void getRequest(Request request)
 	{
-		request = this.request;
+		this.request = request;
 	}
 	
 	/**
