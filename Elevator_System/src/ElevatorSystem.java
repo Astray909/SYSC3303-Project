@@ -7,7 +7,7 @@ import java.util.*;
  * @version 
  *
  */
-public class ElevatorSystem 
+public class ElevatorSystem extends Thread
 {
 	private static final int ELEVATOR_CAPACITY = 8;//maximum capacity of an elevator
 	private ArrayList<Integer> selectedFloors = new ArrayList<>();
