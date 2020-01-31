@@ -16,11 +16,6 @@ public class ElevatorSystem
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 
-	public ElevatorSystem(int id, Request request)
-	{
-		this.id = id;
-		this.request = request;
-	}
 	/**
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
@@ -53,6 +48,12 @@ public class ElevatorSystem
 		currFloor = floor;
 	}
 	
+	private void passengerRequestSim()
+	{
+		//int ran;
+		
+	}
+	
 	/**
 	 * starts thread
 	 */
@@ -62,8 +63,7 @@ public class ElevatorSystem
 		{
 			try
 			{
-				Thread.sleep(1000);//door opening and closing delay 1s. testing commit shortcut
-				
+				Thread.sleep(1000);//door opening and closing delay 1s.
 			}
 			catch (InterruptedException e)
 			{
