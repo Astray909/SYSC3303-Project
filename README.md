@@ -1,5 +1,8 @@
 # SYSC3303-Project
-SYSC 3303 Elevator Project
+
+This is the group project repo for "Group 5".
+The goal of this project is to provide an implementation of an elevator control system and simulator.
+The system is made up of a scheduler, an elevator simulation and a simulation of the floors.
 
 ## Authors
 
