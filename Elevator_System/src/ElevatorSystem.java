@@ -24,10 +24,8 @@ public class ElevatorSystem extends Thread
 	public ElevatorSystem (int id)
 	{
 		this.id = id;
-		if (currFloor == 1)
-		{
-			direction = true;
-		}
+		currFloor = 1;
+		direction = true;
 	}
 	
 	/**
@@ -115,7 +113,6 @@ public class ElevatorSystem extends Thread
 	public boolean getDIrection ()
 	{
 		return this.direction;
-		//if the elevator is on the ground floor initially then the direction should be up not down
 	}
 	
 

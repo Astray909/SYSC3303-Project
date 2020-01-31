@@ -24,7 +24,7 @@ public class RequestTest {
 	void sourceTest() {
 		assertEquals(request.getSource(), 2);
 	}
-	
+
 	@Test
 	void destTest() {
 		assertEquals(request.getDest(), 0);
