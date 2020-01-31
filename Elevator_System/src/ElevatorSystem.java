@@ -68,22 +68,12 @@ public class ElevatorSystem extends Thread
 	}
 	
 	/**
-	 * starts thread
-	 */
-	public void run()
-	{
-		while(true)
-		{
-			goToFloor(1);
-		}
-	}
-	
-	/**
 	 * Getter for the current floor
 	 */
 	public int getCurrFloor ()
 	{
-		 return this.currFloor;
+		System.out.println(currFloor); 
+		return this.currFloor;
 	}
 	
 	/**
@@ -94,4 +84,19 @@ public class ElevatorSystem extends Thread
 		return this.direction;
 		//if the elevator is on the ground floor initially then the direction should be up not down
 	}
+	
+
+	/**
+	 * starts thread
+	 */
+	public void run()
+	{
+		while(true)
+		{
+			delay();
+			goToFloor(50);
+			getCurrFloor();
+		}
+	}
+	
 }
