@@ -24,6 +24,10 @@ public class ElevatorSystem extends Thread
 	public ElevatorSystem (int id)
 	{
 		this.id = id;
+		if (currFloor == 1)
+		{
+			direction = true;
+		}
 	}
 	
 	/**
@@ -97,11 +101,12 @@ public class ElevatorSystem extends Thread
 	
 	/**
 	 * moves the elevator
-	 * @return times takes to move from one floor to another
+	 * 
 	 */
-	private int moveElevator()
+	private void moveElevator()
 	{
-		return 0;
+		delay(3);
+		goToFloor(selectedFloors.get(0));
 	}
 	
 	/**
