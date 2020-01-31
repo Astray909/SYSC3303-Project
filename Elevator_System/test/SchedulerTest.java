@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +24,6 @@ public class SchedulerTest {
 	void testGetRequest() {
 		Request request = new Request(0, true);
 		scheduler.getRequest(request);
+		assertEquals(elevator1.getTestRequest(), request);
 	}
 }

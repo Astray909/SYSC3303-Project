@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * Tests public methods of ElevatorSystem class
  */
 class ElevatorSystemTest {
-	
+
 	ElevatorSystem elevator;
 	
 	@BeforeEach
@@ -18,11 +18,11 @@ class ElevatorSystemTest {
 
 	@Test
 	void testGetCurrFloor() {
-		assertEquals(elevator.getCurrFloor(), 0);
+		assertEquals(elevator.getCurrFloor(), 1);
 	}
 	
 	@Test
 	void testGetDirection() {
-		assertFalse(elevator.getDIrection());
+		assertTrue(elevator.getDIrection());
 	}
 }

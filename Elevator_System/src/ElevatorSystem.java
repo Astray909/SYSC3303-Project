@@ -37,6 +37,7 @@ public class ElevatorSystem extends Thread
 		this.request = request;
 	}
 	
+	
 	/**
 	 * doorOpenClose class, toggles the opening and closing of the door
 	 */
@@ -127,4 +128,11 @@ public class ElevatorSystem extends Thread
 		}
 	}
 	
+	/**
+	 * getter for variable request to be used in testing
+	 * @return the request received by the elevator
+	 */
+	public Request getTestRequest() {
+		return request;
+	}
 }
