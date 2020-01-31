@@ -6,6 +6,11 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/*
+ * @Author Hassan Yusuf 101053489
+ * Tests the scheduler class if its interaction with 
+ * the elevator subsystem and the request class is correct
+ */
 public class SchedulerTest {
 
 	Scheduler scheduler;
