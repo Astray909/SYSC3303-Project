@@ -63,11 +63,14 @@ public class ElevatorSystem extends Thread
 		currFloor = floor;
 	}
 	
-	private void delay()
+	/**
+	 * adds appropriate delays
+	 */
+	private void delay(int delay)
 	{
 		try
 		{
-			Thread.sleep(1000);//door opening and closing delay 1s.
+			Thread.sleep(delay * 1000);//delay in seconds.
 		}
 		catch (InterruptedException e)
 		{}
@@ -75,16 +78,16 @@ public class ElevatorSystem extends Thread
 	
 	/**
 	 * Getter for the current floor
+	 * @return the current floor
 	 */
 	public int getCurrFloor ()
 	{
-		System.out.println(currFloor); 
 		return this.currFloor;
 	}
 	
 	/**
 	 * calculates the distance between floors
-	 * @return
+	 * @return the distance between the current floor and the first destination floor
 	 */
 	private int getFloorDistance()
 	{
@@ -92,6 +95,10 @@ public class ElevatorSystem extends Thread
 		return FLOOR_HEIGHT * diff;
 	}
 	
+	/**
+	 * moves the elevator
+	 * @return times takes to move from one floor to another
+	 */
 	private int moveElevator()
 	{
 		return 0;
