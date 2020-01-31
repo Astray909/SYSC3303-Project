@@ -123,7 +123,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			//delay();
+			//delay(1);
 		}
 	}
 	
