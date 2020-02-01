@@ -10,13 +10,12 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * Eclipse, the code is stored as an eclipse project
 * Image viewer compatible with png format for UML diagrams
 
-## Running the tests
+## Setup Instructions
 
-* ---
-
-## Start the control system manually
-
-* ---
+* In Eclipse IDE, use Import Projects function to import the directory containing the project files
+* Verify JRE System Library is set to jre-10 or higher
+* Verify that all source files are placed in src directory
+* Run the mainClass.java file as Java Application
 
 ## Authors
 
