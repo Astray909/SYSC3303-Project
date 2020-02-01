@@ -17,6 +17,10 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * Verify that all source files are placed in src directory
 * Run the mainClass.java file as Java Application
 
+## Testing Instructions
+* In Eclipse IDE, inside the Package Explorer tab, expand test folder
+* Right click on each JUnit Test File and run as JUnit Test to test corresponding classes
+
 ## Authors
 
 * **Hassan Yusuf** - [almasrur](https://github.com/almasrur)
