@@ -6,8 +6,8 @@ The system is made up of a scheduler, an elevator simulation and a simulation of
 
 ## Prerequisites
 
-* JDK 8, although later version should work as well
-* Eclipse, the code is stored as a eclipse project
+* JavaSE-10 on JDK 13, although JDK 8 and later version should work as well
+* Eclipse, the code is stored as an eclipse project
 * ---- for UML diagrams
 
 ## Running the tests
