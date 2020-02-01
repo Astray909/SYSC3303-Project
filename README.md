@@ -2,13 +2,13 @@
 
 This is the group project repo for "Group 5".
 The goal of this project is to provide an implementation of an elevator control system and simulator.
-The system is made up of a scheduler, an elevator simulation and a simulation of the floors.
+The system consists of a scheduler, an elevator simulation algorithm, and a simulation of the floors.
 
 ## Prerequisites
 
 * JavaSE-10 on JDK 13, although JDK 8 and later version should work as well
 * Eclipse, the code is stored as an eclipse project
-* ---- for UML diagrams
+* Image viewer compatible with png format for UML diagrams
 
 ## Running the tests
 
