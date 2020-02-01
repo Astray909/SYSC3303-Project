@@ -24,3 +24,10 @@ The system is made up of a scheduler, an elevator simulation and a simulation of
 * **Zhe Ji** - [hate-bug](https://github.com/hate-bug)
 * **Simon Yacoub** - [Simon-Yacoub](https://github.com/Simon-Yacoub)
 * **Jia Chen Huang** - [astray909](https://github.com/Astray909)
+
+## Breakdown of responsibilities (for Iteration #1)
+
+* **Hassan Yusuf**: JUnit Test, UML Sequence Diagram
+* **Zhe Ji**: UML Class diagram, Main Class and Scheduler
+* **Simon Yacoub**: Floor
+* **Jia Chen Huang**: ElevatorSystem
