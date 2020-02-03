@@ -124,7 +124,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			//delay(1);
+			//delay(10);
 		}
 	}
 	
