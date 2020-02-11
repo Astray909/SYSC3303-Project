@@ -28,30 +28,10 @@ public class Floor implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
-			simulatePassengerFlow();
-		}
+		
 	}
 
-	private void simulatePassengerFlow() {
-		try {
-			int randomSleep;
-			if (floorNumber == 0) { // If ground floor then more activity
-				randomSleep = (int) ((Math.random() * GROUND_SLEEP_RANGE) + GROUND_SLEEP_RANGE); // generates a request
-																									// every 5 to 10
-																									// seconds
-			} else {
-				randomSleep = (int) ((Math.random() * FLOOR_SLEEP_RANGE) + FLOOR_SLEEP_RANGE); // generates an request
-																								// every 10 to 20
-																								// seconds
-			}
-			Thread.sleep(randomSleep);
-			sendRequest(generateRequest());
-		} catch (InterruptedException e) {
-
-		}
-
-	}
+	
 
 	public Request generateRequest() {
 		boolean upOrDown = Math.random() < 0.5; // 50% true, 50% false
@@ -59,6 +39,7 @@ public class Floor implements Runnable {
 	}
 
 	public void sendRequest(Request request) {
+		System.out.println("Floor: At " + request.getTimeStamp() + ". Get request at floor: " + request.getSource());
 		scheduler.getRequest(request);
 
 	}
