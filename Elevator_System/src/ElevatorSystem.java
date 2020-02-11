@@ -106,6 +106,7 @@ public class ElevatorSystem extends Thread
 	{
 		delay(3);
 		goToFloor(selectedFloors.get(0));
+		System.out.println("The elevator has moved to floor " + selectedFloors.get(0));
 	}
 	
 	/**
