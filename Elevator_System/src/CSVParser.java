@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,16 +25,16 @@ public class CSVParser {
 	 * Read lines from CSV file and then parse them into request objects 
 	 */
 	private void readFile() {
-		String line;
-		Long time;
+		String line, time;
 		boolean isUp = false;
 		int sourceFloor, destFloor;
 		try {
-			br = new BufferedReader(new FileReader(this.fileName));
+			File myFile = new File("./src/" + this.fileName);
+			br = new BufferedReader(new FileReader(myFile));
 			br.readLine(); // skip the first line
 			while ((line = br.readLine()) != null) {
 				String[] info = line.split(CSVStringSplit);
-				time = Long.valueOf(info[0]);
+				time = info[0];
 				destFloor = Integer.valueOf(info[3]);
 				sourceFloor = Integer.valueOf(info[1]);
 				if (info[2].toUpperCase().equals(this.UPButton)) {
