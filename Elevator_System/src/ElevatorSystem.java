@@ -27,7 +27,7 @@ public class ElevatorSystem extends Thread
 		currFloor = 1;
 		direction = true;
 	}
-	
+
 	/**
 	 * fetch the specific task
 	 * @param request: Request type request, what kind of request
@@ -39,8 +39,8 @@ public class ElevatorSystem extends Thread
 		addFloorRequest(this.request.getDest());
 		moveElevator();
 	}
-	
-	
+
+
 	/**
 	 * doorOpenClose class, toggles the opening and closing of the door
 	 */
@@ -48,7 +48,7 @@ public class ElevatorSystem extends Thread
 	{
 		doorOpenClose = !doorOpenClose;
 	}
-	
+
 	/**
 	 * add requests to stop at specific floors
 	 * @param floor: which floor do you want to stop at
@@ -61,14 +61,14 @@ public class ElevatorSystem extends Thread
 		{
 			Collections.reverse(selectedFloors);
 		}
-		
+
 	}
-	
+
 	private void goToFloor(int floor)
 	{
 		currFloor = floor;
 	}
-	
+
 	/**
 	 * adds appropriate delays
 	 */
@@ -81,7 +81,7 @@ public class ElevatorSystem extends Thread
 		catch (InterruptedException e)
 		{}
 	}
-	
+
 	/**
 	 * Getter for the current floor
 	 * @return the current floor
@@ -90,7 +90,7 @@ public class ElevatorSystem extends Thread
 	{
 		return this.currFloor;
 	}
-	
+
 	/**
 	 * calculates the distance between floors
 	 * @return the distance between the current floor and the first destination floor
@@ -100,18 +100,20 @@ public class ElevatorSystem extends Thread
 		int diff = Math.abs(selectedFloors.get(0) - currFloor);
 		return FLOOR_HEIGHT * diff;
 	}
-	
+
 	/**
 	 * moves the elevator
 	 * 
 	 */
-	private void moveElevator()
+	private synchronized void moveElevator()
 	{
 		delay(3);
 		goToFloor(selectedFloors.get(0));
 		System.out.println("The elevator has moved to floor " + selectedFloors.get(0));
+		notifyAll();
+		selectedFloors.remove(0);
 	}
-	
+
 	/**
 	 * Getter for direction
 	 */
@@ -119,7 +121,7 @@ public class ElevatorSystem extends Thread
 	{
 		return this.direction;
 	}
-	
+
 
 	/**
 	 * starts thread
@@ -131,7 +133,7 @@ public class ElevatorSystem extends Thread
 			//delay(10);
 		}
 	}
-	
+
 	/**
 	 * getter for variable request to be used in testing
 	 * @return the request received by the elevator

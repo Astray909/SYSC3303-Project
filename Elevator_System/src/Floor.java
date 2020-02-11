@@ -41,6 +41,7 @@ public class Floor implements Runnable {
 	public void sendRequest(Request request) {
 		System.out.println("Floor: At " + request.getTimeStamp() + ". Get request at floor: " + request.getSource());
 		scheduler.getRequest(request);
+		
 
 	}
 
