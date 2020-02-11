@@ -12,7 +12,11 @@ public class mainClass {
 	Scheduler scheduler;
 	ElevatorSystem elevator1;
 	public static void main (String[] args) {
-		List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
+		
+		CSVParser parser = new CSVParser("CSVfile");
+		parser.getRequests();
+		
+		/*List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
 		ElevatorSystem elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
 		
@@ -34,7 +38,7 @@ public class mainClass {
 			int destFloor = Integer.valueOf((command.split("go"))[1]);
 			Request request = new Request(sourceFloor, sourceFloor>destFloor);
 			
-		}
+		}*/
 		
 	}
 

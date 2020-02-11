@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /*
@@ -8,23 +10,23 @@ public class Request {
 	
 	private int sourceFloor;  // floor of the passenger
 	private int destFloor; // floor that passenger wants to go 
-	private Date timeStamp; //current time stamp once request created
+	private LocalTime timeStamp; //current time stamp once request created
 	private boolean direction; //represent up or down button, true-->up, false--> down
 	
 	public Request(int sourceFloor, boolean direction) {
 		
 		this.sourceFloor = sourceFloor;
 		this.direction = direction;
-		this.timeStamp = new Date();
 		
 	}
 	
-	public Request(int sourceFloor, boolean direction, int destFloor, long time) {
+	public Request(int sourceFloor, boolean direction, int destFloor, String time) {
 		
 		this.sourceFloor = sourceFloor;
 		this.direction = direction;
 		this.destFloor = destFloor;
-		this.timeStamp = new Date(time);
+		LocalTime timeStamp = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm:ss"));
+		this.timeStamp = timeStamp;
 		
 	}
 	
@@ -65,7 +67,7 @@ public class Request {
 	 * Getter for the time stamp
 	 * @return
 	 */
-	public Date getTimeStamp() {
+	public LocalTime getTimeStamp() {
 		return this.timeStamp;
 	}
 	
