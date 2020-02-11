@@ -35,6 +35,8 @@ public class ElevatorSystem extends Thread
 	public void getRequest(Request request)
 	{
 		this.request = request;
+		direction = this.request.getDirection();
+		addFloorRequest(this.request.getDest());
 	}
 	
 	
