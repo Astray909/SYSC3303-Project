@@ -20,6 +20,13 @@ public class mainClass {
 		Floor floors2= new Floor(2, scheduler);
 		Floor floors3 = new Floor(3, scheduler);
 		Scanner input = new Scanner(System.in);
+		
+		/**
+		floors1.run();
+		floors2.run();
+		floors3.run();
+		*/
+		
 		while (true) {
 			System.out.println("Please enter command.");
 			String command = input.next();
@@ -35,5 +42,6 @@ public class mainClass {
 		}
 		
 	}
+
 
 }

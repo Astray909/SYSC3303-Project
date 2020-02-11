@@ -19,6 +19,15 @@ public class Request {
 		
 	}
 	
+	public Request(int sourceFloor, boolean direction, int destFloor, long time) {
+		
+		this.sourceFloor = sourceFloor;
+		this.direction = direction;
+		this.destFloor = destFloor;
+		this.timeStamp = new Date(time);
+		
+	}
+	
 	/**
 	 * Get the source floor
 	 * @return integer represents the floor
