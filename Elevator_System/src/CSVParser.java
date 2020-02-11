@@ -54,6 +54,9 @@ public class CSVParser {
 		}
 	}
 	
+	/**
+	 * Sort request list in a timeStamp sorted order
+	 */
 	private void sortRequests () {
 		for (int i=0; i<this.requests.size(); i++) {
 			for (int n=0; n<this.requests.size(); n++) {
@@ -64,7 +67,7 @@ public class CSVParser {
 		}
 	}
 	/**
-	 * Sort request list in a timeStamp sorted order
+	 * Return the request list 
 	 */
 	public ArrayList<Request> getRequests () {
 		return this.requests;
