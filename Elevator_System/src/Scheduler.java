@@ -9,6 +9,7 @@ import java.util.List;
 public class Scheduler extends Thread {
 	
 	
+	private static final int GROUND_FLOOR_NUM = 0;
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	
 	public Scheduler(List<ElevatorSystem> elevators) {
@@ -28,7 +29,7 @@ public class Scheduler extends Thread {
 		int level = request.getSource();
 		ElevatorSystem desiredElevator = this.elevators.get(0); 
 		if (request.getDirection()) { //going up
-			int tempFloorNum=0;
+			int tempFloorNum= GROUND_FLOOR_NUM;
 			for (ElevatorSystem elevator: this.elevators) {
 				if (tempFloorNum==0) {
 					tempFloorNum = elevator.getCurrFloor();
