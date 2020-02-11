@@ -3,7 +3,7 @@ import java.util.*;
  * The elevator system is responsible for transporting passengers.
  * It takes requests from Scheduler, 
  * then travel to destination floor in the desired direction
- * @author 
+ * @author Jia Chen Huang
  * @version 
  *
  */
@@ -124,7 +124,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			//delay(1);
+			//delay(10);
 		}
 	}
 	
