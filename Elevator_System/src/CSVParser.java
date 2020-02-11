@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CSVParser {
 
@@ -18,7 +19,7 @@ public class CSVParser {
 		this.fileName = fileName;
 		this.requests = new ArrayList<Request>();
 		readFile();
-		
+		sortRequests();
 	}
 	
 	/*
@@ -54,8 +55,19 @@ public class CSVParser {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Sort request list in a timeStamp sorted order
+	 */
+	private void sortRequests () {
+		for (int i=0; i<this.requests.size(); i++) {
+			for (int n=0; n<this.requests.size(); n++) {
+				if ((requests.get(i).getTimeStamp().compareTo(requests.get(n).getTimeStamp()))>0) {
+					Collections.swap(this.requests, i, n);
+				}
+			}
+		}
+	}
+	/**
+	 * Return the request list 
 	 */
 	public ArrayList<Request> getRequests () {
 		return this.requests;
