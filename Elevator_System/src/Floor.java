@@ -58,7 +58,7 @@ public class Floor implements Runnable {
 		return new Request(floorNumber, upOrDown);
 	}
 
-	private void sendRequest(Request request) {
+	public void sendRequest(Request request) {
 		scheduler.getRequest(request);
 
 	}

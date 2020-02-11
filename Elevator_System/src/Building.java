@@ -36,5 +36,17 @@ public class Building {
 			floorThread.start();
 		}
 	}
+	
+	/**
+	 * Takes an array list of requests sorted by earliest time and then 
+	 * sends the requests to the appropriate floors. The floors then send requests to the scheduler
+	 */
+	public void parseRequest(ArrayList<Request> requests) {
+		for(Request req: requests) {
+			Floor sourceFloor = floors.get(req.getSource());
+			sourceFloor.sendRequest(req);
+		}
+		
+	}
 
 }
