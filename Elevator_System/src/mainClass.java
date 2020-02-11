@@ -15,17 +15,12 @@ public class mainClass {
 		List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
 		ElevatorSystem elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
+		
 		Scheduler scheduler = new Scheduler(elevators);
-		Floor floors1 = new Floor(1, scheduler); //Each floor needs a thread? 
-		Floor floors2= new Floor(2, scheduler);
-		Floor floors3 = new Floor(3, scheduler);
+		Building building = new Building(3, scheduler);
 		Scanner input = new Scanner(System.in);
 		
-		/**
-		floors1.run();
-		floors2.run();
-		floors3.run();
-		*/
+		building.startFloors();
 		
 		while (true) {
 			System.out.println("Please enter command.");
