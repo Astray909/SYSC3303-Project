@@ -1,6 +1,8 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +18,7 @@ public class RequestTest {
 	
 	@BeforeEach
 	void setUp() {
-		request = new Request(2, true);
-		time = new Date();
+		request = new Request(2, true, 4, "10:20:10");
 	}
 
 	@Test
@@ -27,7 +28,7 @@ public class RequestTest {
 
 	@Test
 	void destTest() {
-		assertEquals(request.getDest(), 0);
+		assertEquals(request.getDest(), 4);
 		request.setDest(3);
 		assertEquals(request.getDest(), 3);
 	}
@@ -39,17 +40,18 @@ public class RequestTest {
 	
 	@Test 
 	void timeTest()	{
+		LocalTime time = LocalTime.parse("10:20:10", DateTimeFormatter.ofPattern("HH:mm:ss"));
 		assertEquals(time, request.getTimeStamp());
 	}
 	
 	@Test
 	void toStringTest() {
-		assertEquals(request.toString(), time.toString() + " Source floor: " + 2 + "Directon: up");
+		assertEquals(request.toString(), "10:20:10 Source floor: " + 2 + "Directon: up");
 	}
 	
 	@Test
 	void downToStringTest() {
-		Request down = new Request(2, false);
-		assertEquals(down.toString(), time.toString() + " Source floor: " + 2 + "Directon: down");
+		Request down = new Request(2, false, 1, "10:20:10");
+		assertEquals(down.toString(), "10:20:10 Source floor: " + 2 + "Directon: down");
 	}
 }
