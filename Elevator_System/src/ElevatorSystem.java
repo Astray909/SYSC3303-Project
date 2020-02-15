@@ -111,6 +111,7 @@ public class ElevatorSystem extends Thread
 		goToFloor(selectedFloors.get(0));
 		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
 		//notifyAll();
+		//just here for no reason;
 		selectedFloors.remove(0);
 	}
 
