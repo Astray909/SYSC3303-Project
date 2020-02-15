@@ -14,11 +14,12 @@ public class FloorTest {
 	
 	Floor floor;
 	Scheduler scheduler;
+	ElevatorSystem elevator1;
 	
 	@BeforeEach
 	void setUp() {
 		List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
-		ElevatorSystem elevator1 = new ElevatorSystem(1);
+		elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
 		scheduler = new Scheduler(elevators);
 		floor = new Floor(1, scheduler);
@@ -31,7 +32,9 @@ public class FloorTest {
 	}
 
 	@Test
-	void testRun() {
-		//cannot be tested as run is an infinite while loop
+	void testSendRequest() {
+		Request request = new Request(1, true, 2, "10:20:10");
+		floor.sendRequest(request);
+		assertEquals(request, elevator1.getTestRequest());
 	}
 }

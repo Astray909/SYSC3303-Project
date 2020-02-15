@@ -15,10 +15,15 @@ class ElevatorSystemTest {
 	void setUp() {
 		elevator = new ElevatorSystem(1);
 	}
+	
+	@Test
+	void testGetId() {
+		assertEquals(1, elevator.getElevatorId());
+	}
 
 	@Test
 	void testGetCurrFloor() {
-		assertEquals(elevator.getCurrFloor(), 1);
+		assertEquals(elevator.getCurrFloor(), 0);// intial floor
 	}
 	
 	@Test
