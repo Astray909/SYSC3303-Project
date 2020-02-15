@@ -7,7 +7,7 @@ import java.util.Scanner;
  *
  */
 public class mainClass {
-	
+
 	public static void main (String[] args) {
 		ElevatorSystem elevator = new ElevatorSystem(0);
 		List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();

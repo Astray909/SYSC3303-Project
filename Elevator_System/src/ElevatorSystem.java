@@ -90,7 +90,7 @@ public class ElevatorSystem extends Thread
 	{
 		return this.currFloor;
 	}
-	
+
 	/**
 	 * Getter for the elevator id
 	 * @return the elevator id

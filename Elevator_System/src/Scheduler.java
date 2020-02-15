@@ -8,11 +8,11 @@ import java.util.List;
  */
 
 public class Scheduler extends Thread {
-	
-	
+
+
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
-	
+
 	public Scheduler (List<ElevatorSystem> elevators) {
 		// TODO Auto-generated constructor stub
 		this.elevators = elevators;
@@ -21,12 +21,12 @@ public class Scheduler extends Thread {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
 		}
 	}
-	
+
 	@Override
 	public void run() {
-		
+
 	}
-	
+
 	/**
 	 * A method to receive request from floor and pass the request to the best(nearest) elevator
 	 * @param request
@@ -66,7 +66,7 @@ public class Scheduler extends Thread {
 			}
 		}		
 	}
-	
+
 
 	public static void elevatorFloor (ElevatorSystem elevator, int floor) {
 		elevatorStatus.put(elevator, floor);
