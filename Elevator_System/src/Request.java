@@ -83,6 +83,5 @@ public class Request {
 		info = this.timeStamp.toString() +  " Source floor: " + this.sourceFloor + "Directon: " + dir;
 		return info; 
 	}
-	
 
 }

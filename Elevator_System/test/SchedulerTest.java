@@ -26,8 +26,15 @@ public class SchedulerTest {
 	}
 	
 	@Test
-	void testGetRequest() {
+	void testGetUpRequest() {
 		Request request = new Request(0, true);
+		scheduler.getRequest(request);
+		assertEquals(elevator1.getTestRequest(), request);
+	}
+	
+	@Test
+	void testGetDownRequest() {
+		Request request = new Request(5, false);
 		scheduler.getRequest(request);
 		assertEquals(elevator1.getTestRequest(), request);
 	}

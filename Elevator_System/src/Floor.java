@@ -39,7 +39,7 @@ public class Floor implements Runnable {
 	}
 
 	public void sendRequest(Request request) {
-		System.out.println("Floor: At " + request.getTimeStamp() + ". Get request at floor: " + request.getSource());
+		System.out.println("Floor class: At " + request.getTimeStamp() + ". \nA passenger on floor " + request.getSource() + " has requested an elevator to floor " + request.getDest() + " .");
 		scheduler.getRequest(request);
 		
 

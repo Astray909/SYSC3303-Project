@@ -30,10 +30,10 @@ class CSVParserTest {
 		Request request3 = new Request(6, false, 2, "11:25:12");
 		Request request4 = new Request(1, true, 4, "13:20:11");
 		ArrayList<Request> request = parser.getRequests();
-		assertEquals(request4.toString(), request.get(0).toString());
-		assertEquals(request3.toString(), request.get(1).toString());
-		assertEquals(request2.toString(), request.get(2).toString());
-		assertEquals(request1.toString(), request.get(3).toString());
+		assertEquals(request1.toString(), request.get(0).toString());
+		assertEquals(request2.toString(), request.get(1).toString());
+		assertEquals(request3.toString(), request.get(2).toString());
+		assertEquals(request4.toString(), request.get(3).toString());
 	}
 
 }

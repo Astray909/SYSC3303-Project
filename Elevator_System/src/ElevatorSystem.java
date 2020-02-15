@@ -90,6 +90,15 @@ public class ElevatorSystem extends Thread
 	{
 		return this.currFloor;
 	}
+	
+	/**
+	 * Getter for the elevator id
+	 * @return the elevator id
+	 */
+	public int getElevatorId()
+	{
+		return this.id;
+	}
 
 	/**
 	 * calculates the distance between floors
