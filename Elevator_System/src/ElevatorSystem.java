@@ -99,6 +99,7 @@ public class ElevatorSystem extends Thread
 	{
 		int diff = Math.abs(selectedFloors.get(0) - currFloor);
 		return FLOOR_HEIGHT * diff;
+		//added line
 	}
 
 	/**
