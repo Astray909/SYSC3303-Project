@@ -1,3 +1,8 @@
+/**
+ * This class is used to parse CSV file into requests 
+ * CSV file contains timestamp for each request, source floor, destination floor and direction
+ * Author: Zhe Ji (hate-bug)
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
