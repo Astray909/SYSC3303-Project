@@ -14,7 +14,6 @@ public class Scheduler extends Thread {
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
 
 	public Scheduler (List<ElevatorSystem> elevators) {
-		// TODO Auto-generated constructor stub
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		for (ElevatorSystem elevator: elevators) {
