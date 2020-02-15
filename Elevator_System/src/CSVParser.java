@@ -60,7 +60,7 @@ public class CSVParser {
 	private void sortRequests () {
 		for (int i=0; i<this.requests.size(); i++) {
 			for (int n=0; n<this.requests.size(); n++) {
-				if ((requests.get(i).getTimeStamp().compareTo(requests.get(n).getTimeStamp()))>0) {
+				if ((requests.get(i).getTimeStamp().compareTo(requests.get(n).getTimeStamp()))<0) {
 					Collections.swap(this.requests, i, n);
 				}
 			}
