@@ -15,6 +15,7 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * In Eclipse IDE, use Import Projects function to import the directory containing the project files
 * Verify JRE System Library is set to jre-10 or higher
 * Verify that all source files are placed in src directory
+* Verify that a CSV input with the correct formatting is present
 * Run the mainClass.java file as Java Application
 
 ## Testing Instructions
@@ -34,3 +35,10 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * **Zhe Ji**: UML Class diagram, Main Class and Scheduler
 * **Simon Yacoub**: Floor
 * **Jia Chen Huang**: ElevatorSystem
+
+## Breakdown of responsibilities (for Iteration #2)
+
+* **Hassan Yusuf**: JUnit Test, UML Sequence Diagram
+* **Zhe Ji**: Main Class, CSV Parser and Scheduler
+* **Simon Yacoub**: Floor, Building, State Machine
+* **Jia Chen Huang**: ElevatorSystem, UML Class diagram (update for Iteration 2)
