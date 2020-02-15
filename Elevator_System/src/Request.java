@@ -7,29 +7,29 @@ import java.util.Date;
  * Data structure for the info transfer between Floor, Scheduler and Elevators
  */
 public class Request {
-	
+
 	private int sourceFloor;  // floor of the passenger
 	private int destFloor; // floor that passenger wants to go 
 	private LocalTime timeStamp; //current time stamp once request created
 	private boolean direction; //represent up or down button, true-->up, false--> down
-	
+
 	public Request(int sourceFloor, boolean direction) {
-		
+
 		this.sourceFloor = sourceFloor;
 		this.direction = direction;
-		
+
 	}
-	
+
 	public Request(int sourceFloor, boolean direction, int destFloor, String time) {
-		
+
 		this.sourceFloor = sourceFloor;
 		this.direction = direction;
 		this.destFloor = destFloor;
 		LocalTime timeStamp = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm:ss"));
 		this.timeStamp = timeStamp;
-		
+
 	}
-	
+
 	/**
 	 * Get the source floor
 	 * @return integer represents the floor
@@ -37,7 +37,7 @@ public class Request {
 	public int getSource () {
 		return this.sourceFloor;
 	}
-	
+
 	/**
 	 * Setter for the dest floor
 	 * @param destFloor
@@ -45,7 +45,7 @@ public class Request {
 	public void setDest(int destFloor) {
 		this.destFloor = destFloor;
 	}
-	
+
 	/**
 	 * Getter for the dest floor
 	 * @param destFloor
@@ -54,7 +54,7 @@ public class Request {
 	public int getDest () {
 		return this.destFloor;
 	}
-	
+
 	/**
 	 * Getter for the direction, true-->up, false-->down
 	 * @return
@@ -62,7 +62,7 @@ public class Request {
 	public boolean getDirection () {
 		return this.direction;
 	}
-	
+
 	/**
 	 * Getter for the time stamp
 	 * @return
@@ -70,7 +70,7 @@ public class Request {
 	public LocalTime getTimeStamp() {
 		return this.timeStamp;
 	}
-	
+
 	@Override 
 	public String toString () {
 		String info = "";

@@ -90,7 +90,7 @@ public class ElevatorSystem extends Thread
 	{
 		return this.currFloor;
 	}
-	
+
 	/**
 	 * Getter for the elevator id
 	 * @return the elevator id
@@ -121,7 +121,6 @@ public class ElevatorSystem extends Thread
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
 		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
-		//notifyAll();
 		selectedFloors.remove(0);
 	}
 

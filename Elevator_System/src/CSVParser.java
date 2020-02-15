@@ -19,14 +19,14 @@ public class CSVParser {
 	private final String UPButton = "UP";
 	private final String downButton = "DOWN";
 	private ArrayList<Request> requests; 
-	
+
 	public CSVParser (String fileName) {
 		this.fileName = fileName;
 		this.requests = new ArrayList<Request>();
 		readFile();
 		sortRequests();
 	}
-	
+
 	/*
 	 * Read lines from CSV file and then parse them into request objects 
 	 */
@@ -58,7 +58,7 @@ public class CSVParser {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Sort request list in a timeStamp sorted order
 	 */

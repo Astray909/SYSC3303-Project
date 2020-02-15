@@ -6,13 +6,13 @@ import java.util.ArrayList;
  *
  */
 public class Building {
-	
+
 	/** The floors in the building */
 	ArrayList<Floor> floors;
-	
+
 	/** The scheduler responsible for scheduling the floors */
 	Scheduler scheduler;
-	
+
 	/**
 	 * Constructor for a bulding object. 
 	 * @param numOfFloors The number of floors the building has.
@@ -21,12 +21,12 @@ public class Building {
 	public Building(int numOfFloors, Scheduler scheduler) {
 		this.scheduler = scheduler;
 		floors = new ArrayList<Floor>();
-		
+
 		for(int floorNumber = 0; floorNumber < numOfFloors; floorNumber++) {
 			floors.add(new Floor(floorNumber, scheduler));
 		}
 	}
-	
+
 	/**
 	 * Starts the floor threads in the building
 	 */
@@ -36,7 +36,7 @@ public class Building {
 			floorThread.start();
 		}
 	}
-	
+
 	/**
 	 * Takes an array list of requests sorted by earliest time and then 
 	 * sends the requests to the appropriate floors. The floors then send requests to the scheduler
@@ -54,9 +54,17 @@ public class Building {
 					e.printStackTrace();
 				}
 			}
-			*/
+			 */
 		}
-		
+
+	}
+
+	/**
+	 * Getter for the list of floors
+	 * @return floors
+	 */
+	public ArrayList<Floor> getFloors() {
+		return this.floors;
 	}
 
 }

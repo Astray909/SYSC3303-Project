@@ -15,7 +15,7 @@ public class Floor implements Runnable {
 	 */
 	private int floorNumber;
 
-	
+
 	/**
 	 * Constructor for floor
 	 * @param floorNumber The floor number
@@ -28,10 +28,10 @@ public class Floor implements Runnable {
 
 	@Override
 	public void run() {
-		
+
 	}
 
-	
+
 
 	public Request generateRequest() {
 		boolean upOrDown = Math.random() < 0.5; // 50% true, 50% false
@@ -41,8 +41,16 @@ public class Floor implements Runnable {
 	public void sendRequest(Request request) {
 		System.out.println("Floor class: At " + request.getTimeStamp() + ". \nA passenger on floor " + request.getSource() + " has requested an elevator to floor " + request.getDest() + ".");
 		scheduler.getRequest(request);
-		
 
+
+	}
+
+	/**
+	 * Getter for the floorNumber
+	 * @return floorNumber
+	 */
+	public int getFloorNumber() {
+		return this.floorNumber;
 	}
 
 }
