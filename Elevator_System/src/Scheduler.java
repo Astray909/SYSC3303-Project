@@ -57,8 +57,7 @@ public class Scheduler extends Thread {
 				}
 				desiredElevator.getRequest(request);
 			}
-		}
-		
+		}		
 	}
 	
 
