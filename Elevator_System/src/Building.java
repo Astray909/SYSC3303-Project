@@ -45,6 +45,7 @@ public class Building {
 		for(Request req: requests) {
 			Floor sourceFloor = floors.get(req.getSource());
 			sourceFloor.sendRequest(req);
+			/**
 			while (true) {
 				try {
 					wait();
@@ -53,6 +54,7 @@ public class Building {
 					e.printStackTrace();
 				}
 			}
+			*/
 		}
 		
 	}
