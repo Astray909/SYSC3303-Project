@@ -26,7 +26,8 @@ public class Scheduler extends Thread {
 	 */
 	public synchronized void getRequest (Request request) {
 		int level = request.getSource();
-		ElevatorSystem desiredElevator = this.elevators.get(0); 
+		ElevatorSystem desiredElevator = this.elevators.get(0);
+		/**
 		if (request.getDirection()) { //going up
 			int tempFloorNum=0;
 			for (ElevatorSystem elevator: this.elevators) {
@@ -43,7 +44,8 @@ public class Scheduler extends Thread {
 				desiredElevator.getRequest(request);
 			}
 		} 
-		
+		*/
+		desiredElevator.getRequest(request);
 	}
 	
 

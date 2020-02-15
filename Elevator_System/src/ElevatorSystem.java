@@ -105,7 +105,7 @@ public class ElevatorSystem extends Thread
 	 * moves the elevator
 	 * 
 	 */
-	private synchronized void moveElevator()
+	private void moveElevator()
 	{
 		delay(3);
 		goToFloor(selectedFloors.get(0));
