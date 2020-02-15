@@ -24,7 +24,7 @@ public class ElevatorSystem extends Thread
 	public ElevatorSystem (int id)
 	{
 		this.id = id;
-		currFloor = 1;
+		//currFloor = 1;
 		direction = true;
 	}
 
