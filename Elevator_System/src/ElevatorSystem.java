@@ -36,7 +36,7 @@ public class ElevatorSystem extends Thread
 	{
 		this.request = request;
 		direction = this.request.getDirection();
-		addFloorRequest(this.request.getDest());
+		addFloorRequest(direction, this.request.getDest());
 		moveElevator();
 	}
 
@@ -53,11 +53,11 @@ public class ElevatorSystem extends Thread
 	 * add requests to stop at specific floors
 	 * @param floor: which floor do you want to stop at
 	 */
-	private void addFloorRequest(int floor)
+	private void addFloorRequest(boolean dir, int floor)
 	{
 		selectedFloors.add(floor);
 		Collections.sort(selectedFloors);
-		if(!direction)
+		if(!dir)
 		{
 			Collections.reverse(selectedFloors);
 		}
