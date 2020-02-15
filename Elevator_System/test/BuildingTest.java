@@ -24,11 +24,17 @@ class BuildingTest {
 		elevators.add(elevator1);
 		scheduler = new Scheduler(elevators);
 		building = new Building(5, scheduler);
+		building.startFloors();
 	}
 	
 	@Test
 	void test() {
-		
+		ArrayList<Floor> floors = building.getFloors();
+		assertEquals(floors.get(0).getFloorNumber(),0);
+		assertEquals(floors.get(1).getFloorNumber(),1);
+		assertEquals(floors.get(2).getFloorNumber(),2);
+		assertEquals(floors.get(3).getFloorNumber(),3);
+		assertEquals(floors.get(4).getFloorNumber(),4);
 	}
 
 }

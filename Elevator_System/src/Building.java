@@ -59,4 +59,12 @@ public class Building {
 		
 	}
 
+	/**
+	 * Getter for the list of floors
+	 * @return floors
+	 */
+	public ArrayList<Floor> getFloors() {
+		return this.floors;
+	}
+
 }

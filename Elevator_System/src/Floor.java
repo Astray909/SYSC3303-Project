@@ -45,4 +45,12 @@ public class Floor implements Runnable {
 
 	}
 
+	/**
+	 * Getter for the floorNumber
+	 * @return floorNumber
+	 */
+	public int getFloorNumber() {
+		return this.floorNumber;
+	}
+
 }
