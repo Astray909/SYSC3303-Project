@@ -107,9 +107,11 @@ public class ElevatorSystem extends Thread
 	 */
 	private void moveElevator()
 	{
+		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
 		delay(3);
 		goToFloor(selectedFloors.get(0));
-		System.out.println("The elevator has moved to floor " + selectedFloors.get(0));
+		Scheduler.elevatorFloor(this, selectedFloors.get(0));
+		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
 		//notifyAll();
 		selectedFloors.remove(0);
 	}

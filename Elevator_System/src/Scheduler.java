@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 /**
  * This class used to handle the request from floor system, choose the right Elavatorsystem and pass the request to Elevator system
@@ -10,11 +11,17 @@ public class Scheduler extends Thread {
 	
 	
 	private List<ElevatorSystem> elevators; //All elevators in the system
+	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
 	
-	public Scheduler(List<ElevatorSystem> elevators) {
+	public Scheduler (List<ElevatorSystem> elevators) {
 		// TODO Auto-generated constructor stub
 		this.elevators = elevators;
+		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
+		for (ElevatorSystem elevator: elevators) {
+			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
+		}
 	}
+	
 	@Override
 	public void run() {
 		
@@ -61,4 +68,14 @@ public class Scheduler extends Thread {
 	}
 	
 
+	public static void elevatorFloor (ElevatorSystem elevator, int floor) {
+		elevatorStatus.put(elevator, floor);
+		System.out.println("Scheduler: Receive signal from Elevator sytem: Elevator "+ elevator.getId() + " arrive at floor "+ floor);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
