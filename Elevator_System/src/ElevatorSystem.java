@@ -20,6 +20,9 @@ public class ElevatorSystem extends Thread
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 	private int portNum; //port number for the elevator
+	
+	private static DatagramPacket receivePacket;
+	private static DatagramSocket sendSocket, receiveSocket;
 
 	/**
 	 * Constructor for ElevatorSystem
