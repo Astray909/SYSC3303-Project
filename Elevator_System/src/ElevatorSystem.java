@@ -17,6 +17,7 @@ public class ElevatorSystem extends Thread
 	private Request request;
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
+	private int portNum; //port number for the elevator
 
 	/**
 	 * Constructor for ElevatorSystem
@@ -26,6 +27,17 @@ public class ElevatorSystem extends Thread
 		this.id = id;
 		//currFloor = 1;
 		direction = true;
+	}
+	
+	/**
+	 * Setter for port number 
+	 */
+	public void setPortNum (int num) {
+		this.portNum = num;
+	}
+	
+	public int getPortNum () {
+		return this.portNum;
 	}
 
 	/**

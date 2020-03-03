@@ -1,3 +1,11 @@
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.List;
 /**
@@ -9,13 +17,18 @@ import java.util.List;
 
 public class Scheduler extends Thread {
 
-
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
-
+	private DatagramSocket schedulerSocket; // Socket at port 23, used to send and receive packet 
+	
 	public Scheduler (List<ElevatorSystem> elevators) {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
+		try {
+			this.schedulerSocket = new DatagramSocket(23);
+		} catch (SocketException e) {
+			System.out.println("Scheduler: Fail to create socket 23");
+		}
 		for (ElevatorSystem elevator: elevators) {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
 		}
@@ -46,7 +59,6 @@ public class Scheduler extends Thread {
 					desiredElevator = elevator;	
 					tempFloorNum = elevator.getCurrFloor();
 				}
-				desiredElevator.getRequest(request);
 			}
 		} else if (!request.getDirection()) {//going down
 			int tempFloorNum=0;
@@ -64,8 +76,47 @@ public class Scheduler extends Thread {
 				desiredElevator.getRequest(request);
 			}
 		}		
+		
 	}
 
+	public void sendAndReceive () {
+		DatagramPacket packet = new DatagramPacket(new byte[1000], 1000);
+		try {
+			this.schedulerSocket.receive(packet);
+			ByteArrayInputStream bis = new ByteArrayInputStream(packet.getData());
+			ObjectInputStream in = null;
+			
+			try {
+				in = new ObjectInputStream(bis);
+				try {
+					Request request = (Request) in.readObject();
+					this.getRequest(request);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Scheduler: Error parse request from packet");
+				} finally {
+					in.close();
+				}
+				
+			} catch (IOException e) {
+				System.out.println("Scheduler: Error parse packet.");
+			}
+		} catch (IOException e) {
+			System.out.println("Scheduler: Error receive packet.");
+		}
+	}
+	
+	private void sendPacket (Request request, ElevatorSystem elevator) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(bos);
+			out.writeObject(request);
+			out.flush();
+		} catch (IOException e) {
+			System.out.println("Scheduler: Error create output stream.");
+		}
+	}
 
 	public static void elevatorFloor (ElevatorSystem elevator, int floor) {
 		elevatorStatus.put(elevator, floor);
