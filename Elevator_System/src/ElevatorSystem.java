@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+import java.net.*;
 /**
  * The elevator system is responsible for transporting passengers.
  * It takes requests from Scheduler, 
@@ -17,6 +19,9 @@ public class ElevatorSystem extends Thread
 	private Request request;
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
+	
+	private static DatagramPacket receivePacket;
+	private static DatagramSocket sendSocket, receiveSocket;
 
 	/**
 	 * Constructor for ElevatorSystem
