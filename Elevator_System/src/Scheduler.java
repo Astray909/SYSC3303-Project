@@ -73,9 +73,9 @@ public class Scheduler extends Thread {
 					desiredElevator = elevator;	
 					tempFloorNum = elevator.getCurrFloor();
 				}
-				desiredElevator.getRequest(request);
 			}
-		}		
+		}
+		this.sendPacket(request, desiredElevator);
 		
 	}
 
@@ -113,6 +113,8 @@ public class Scheduler extends Thread {
 			out = new ObjectOutputStream(bos);
 			out.writeObject(request);
 			out.flush();
+			DatagramPacket sendPacket = new DatagramPacket(bos.toByteArray(), bos.toByteArray().length, elevator.getPortNum());
+			this.schedulerSocket.send(sendPacket);
 		} catch (IOException e) {
 			System.out.println("Scheduler: Error create output stream.");
 		}
