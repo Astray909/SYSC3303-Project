@@ -1,4 +1,5 @@
 import java.util.*;
+
 import java.io.*;
 import java.net.*;
 /**
@@ -20,7 +21,7 @@ public class ElevatorSystem extends Thread
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 	private int portNum; //port number for the elevator
-	
+
 	private static DatagramPacket receivePacket;
 	private static DatagramSocket sendSocket, receiveSocket;
 
@@ -32,17 +33,102 @@ public class ElevatorSystem extends Thread
 		this.id = id;
 		//currFloor = 1;
 		direction = true;
+		try
+		{
+			sendSocket = new DatagramSocket();
+			receiveSocket = new DatagramSocket(portNum);
+		}
+		catch (SocketException se)
+		{
+			se.printStackTrace();
+			System.exit(1);
+		}
 	}
-	
+
 	/**
 	 * Setter for port number 
 	 */
-	public void setPortNum (int num) {
+	public void setPortNum (int num)
+	{
 		this.portNum = num;
 	}
-	
-	public int getPortNum () {
+
+	public int getPortNum ()
+	{
 		return this.portNum;
+	}
+
+	public void sendAndReceive()
+	{
+		//receivePacket = Scheduler.sendPacket(receiveSocket, "Scheduler");
+		byte[] data = receivePacket.getData();
+
+		byte[] replyData = null;
+
+		System.out.println("Elevator: Packet sending");
+		sendPacket(replyData, replyData.length, receivePacket.getAddress(), 23, sendSocket, "Elevator");
+		System.out.println("Send Packet: Success");
+
+		return;
+	}
+	
+	/**
+	 * builds and sends a new Packet
+	 * @param msg: the message you want to send
+	 * @param len: length of the message
+	 * @param desti: destination ip
+	 * @param port: destination port
+	 * @param s: source socket
+	 * @param source: source address
+	 */
+	public static void sendPacket(byte[]msg, int len, InetAddress desti, int port, DatagramSocket s, String source)
+	{
+		DatagramPacket packet = new DatagramPacket(msg, len, desti, port);
+		System.out.println("The source " + source + " is sending a packet:");
+
+		//prints out information about the packet
+		System.out.println("Packet from host: " + packet.getAddress());
+		System.out.println("From host port: " + packet.getPort());
+		System.out.println("Length: " + packet.getLength());
+		System.out.print("Containing: " );
+		print(msg, msg.length);
+
+		try
+		{
+			s.send(packet);
+		} catch (IOException ie)
+		{
+			ie.printStackTrace();
+			System.exit(1);
+		}
+		System.out.println(source + ": packet sent\n");
+	}
+	
+	/**
+	 * prints out the contents of a byte array
+	 * @param bytes: the byte array
+	 * @param len: length of the byte array
+	 */
+	private static void print(byte[] bytes, int len)
+	{
+		System.out.print("Data as bytes: ");
+		for (int i=0; i<len; i++) {
+			System.out.print(Integer.toHexString(bytes[i]));
+			System.out.print(' ');
+		}
+		System.out.print("\n");
+
+		System.out.print("Data as string: ");
+		for (int i=0; i<len; i++) {
+			if (bytes[i] < 32) {
+				System.out.print((char) (bytes[i] + '0'));
+			}
+			else {
+				System.out.print((char) bytes[i]);
+			}
+			System.out.print(' ');
+		}
+		System.out.print("\n\n");
 	}
 
 	/**
