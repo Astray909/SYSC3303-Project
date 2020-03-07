@@ -42,3 +42,10 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * **Zhe Ji**: Main Class, CSV Parser and Scheduler
 * **Simon Yacoub**: Floor, Building, State Machine
 * **Jia Chen Huang**: ElevatorSystem, UML Class diagram (updates for Iteration 2)
+
+## Breakdown of responsibilities (for Iteration #3)
+
+* **Hassan Yusuf**: JUnit Test
+* **Zhe Ji**: Main Class, Scheduler
+* **Simon Yacoub**: Floor, Building
+* **Jia Chen Huang**: ElevatorSystem
