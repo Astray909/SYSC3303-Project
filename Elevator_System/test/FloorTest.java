@@ -1,8 +1,10 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +27,11 @@ public class FloorTest {
 		floor = new Floor(1, scheduler);
 	}
 	
+	@AfterEach
+	void tearDown() {
+		scheduler.getSchedulerSocket().close();
+	}
+	
 	@Test
 	void testGenerateRequest() {
 		Request request = floor.generateRequest();
@@ -35,6 +42,8 @@ public class FloorTest {
 	void testSendRequest() {
 		Request request = new Request(1, true, 2, "10:20:10");
 		floor.sendRequest(request);
-		assertEquals(request, elevator1.getTestRequest());
+		scheduler.sendAndReceive();
+		elevator1.sendAndReceive();
+		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 }
