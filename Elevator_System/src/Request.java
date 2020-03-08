@@ -72,6 +72,14 @@ public class Request implements Serializable{
 		return this.timeStamp;
 	}
 
+	public boolean equals(Request e) {
+	    	if(this.direction == e.direction & this.sourceFloor == e.sourceFloor) {
+			return true;
+	    	}else {
+			return false;
+		}
+	}
+	
 	@Override 
 	public String toString () {
 		String info = "";
