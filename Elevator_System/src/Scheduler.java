@@ -41,7 +41,7 @@ public class Scheduler extends Thread {
 
 	/**
 	 * A method to receive request from floor and pass the request to the best(nearest) elevator
-	 * @param request
+	 * @param request 
 	 */
 	public synchronized void getRequest (Request request) {
 		int level = request.getSource();
