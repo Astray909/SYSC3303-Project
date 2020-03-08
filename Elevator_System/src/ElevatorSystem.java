@@ -36,7 +36,8 @@ public class ElevatorSystem extends Thread
 		try
 		{
 			sendSocket = new DatagramSocket();
-			receiveSocket = new DatagramSocket(portNum);
+			receiveSocket = new DatagramSocket(); //Bind to available port
+			portNum = receiveSocket.getPort(); //Record port number in portNum
 		}
 		catch (SocketException se)
 		{
