@@ -24,6 +24,7 @@ public class ElevatorSystem extends Thread
 
 	private static DatagramPacket receivePacket;
 	private static DatagramSocket sendSocket, receiveSocket;
+	private InetAddress address;
 
 	/**
 	 * Constructor for ElevatorSystem
@@ -65,20 +66,28 @@ public class ElevatorSystem extends Thread
 		ByteArrayInputStream bis = new ByteArrayInputStream(receivePacket.getData());
 		ObjectInputStream in = null;
 
-		try {
+		try
+		{
 			in = new ObjectInputStream(bis);
-			try {
+			try
+			{
 				Request request = (Request) in.readObject();
 				this.getRequest(request);
-			} catch (ClassNotFoundException e) {
+			}
+			catch (ClassNotFoundException e)
+			{
 				// TODO Auto-generated catch block
-				System.out.println("Scheduler: Error parse request from packet");
-			} finally {
+				System.out.println("Elevator: Error parse request from packet");
+			}
+			finally
+			{
 				in.close();
 			}
 
-		} catch (IOException e) {
-			System.out.println("Scheduler: Error parse packet.");
+		}
+		catch (IOException e)
+		{
+			System.out.println("Elevator: Error parse packet.");
 		}
 
 		byte[] replyData = null;
@@ -95,10 +104,13 @@ public class ElevatorSystem extends Thread
 		System.out.println("Waiting for Packet.\n");
 
 
-		try {
+		try
+		{
 			System.out.println("Waiting...");
 			s.receive(receivePacket);
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			System.out.print("IO Exception: likely:");
 			System.out.println("Receive Socket Timed Out.\n" + e);
 			e.printStackTrace();
@@ -114,16 +126,20 @@ public class ElevatorSystem extends Thread
 		return receivePacket;
 	}
 
-	private void sendPacket (Request request) {
+	private void sendPacket (Request request)
+	{
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutputStream out = null;
-		try {
+		try
+		{
 			out = new ObjectOutputStream(bos);
 			out.writeObject(request);
 			out.flush();
 			DatagramPacket sendPacket = new DatagramPacket(bos.toByteArray(), bos.toByteArray().length, 23);
 			this.sendSocket.send(sendPacket);
-		} catch (IOException e) {
+		}
+		catch (IOException e)
+		{
 			System.out.println("Elevator: Error create output stream.");
 		}
 	}
@@ -136,18 +152,22 @@ public class ElevatorSystem extends Thread
 	private static void print(byte[] bytes, int len)
 	{
 		System.out.print("Data as bytes: ");
-		for (int i=0; i<len; i++) {
+		for (int i=0; i<len; i++)
+		{
 			System.out.print(Integer.toHexString(bytes[i]));
 			System.out.print(' ');
 		}
 		System.out.print("\n");
 
 		System.out.print("Data as string: ");
-		for (int i=0; i<len; i++) {
-			if (bytes[i] < 32) {
+		for (int i=0; i<len; i++)
+		{
+			if (bytes[i] < 32)
+			{
 				System.out.print((char) (bytes[i] + '0'));
 			}
-			else {
+			else
+			{
 				System.out.print((char) bytes[i]);
 			}
 			System.out.print(' ');
@@ -250,7 +270,7 @@ public class ElevatorSystem extends Thread
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
 		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
 		selectedFloors.remove(0);
-		
+
 	}
 
 	/**
@@ -277,7 +297,13 @@ public class ElevatorSystem extends Thread
 	 * getter for variable request to be used in testing
 	 * @return the request received by the elevator
 	 */
-	public Request getTestRequest() {
+	public Request getTestRequest()
+	{
 		return request;
+	}
+
+	public InetAddress getAddress()
+	{
+		return address;
 	}
 }
