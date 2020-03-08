@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -6,7 +7,7 @@ import java.util.Date;
  * @Author: Zhe 100968704
  * Data structure for the info transfer between Floor, Scheduler and Elevators
  */
-public class Request {
+public class Request implements Serializable{
 
 	private int sourceFloor;  // floor of the passenger
 	private int destFloor; // floor that passenger wants to go 

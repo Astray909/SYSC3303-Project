@@ -1,11 +1,16 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+
 /**
  * The floor subsystem is used simulate the arrival of passengers to the
  * elevators and for simulating all button presses and lamps. It should also
  * test for the proper operation of the elevator
  */
 public class Floor implements Runnable {
-	private static final int GROUND_SLEEP_RANGE = 500;
-	private static final int FLOOR_SLEEP_RANGE = 1000;
 	private Scheduler scheduler;
 
 	/**
@@ -14,6 +19,8 @@ public class Floor implements Runnable {
 	 * below has a -negative floorNumber.
 	 */
 	private int floorNumber;
+	
+	private DatagramSocket sendSocket; //Socket used by floor to send requests to the scheduler
 
 
 	/**
@@ -24,6 +31,11 @@ public class Floor implements Runnable {
 	public Floor(int floorNumber, Scheduler scheduler) {
 		this.floorNumber = floorNumber;
 		this.scheduler = scheduler;
+		try {
+			sendSocket = new DatagramSocket();
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -40,7 +52,19 @@ public class Floor implements Runnable {
 
 	public void sendRequest(Request request) {
 		System.out.println("Floor class: At " + request.getTimeStamp() + ". \nA passenger on floor " + request.getSource() + " has requested an elevator to floor " + request.getDest() + ".");
-		scheduler.getRequest(request);
+		ByteArrayOutputStream data = new ByteArrayOutputStream();
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(data);
+			out.writeObject(request);
+			out.flush();
+			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, 23);
+			this.sendSocket.send(sendPacket);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Scheduler: Error create output stream.");
+		}
+		//scheduler.getRequest(request); Old method for sending requests to a scheduler
 
 
 	}
