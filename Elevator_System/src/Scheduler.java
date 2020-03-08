@@ -5,7 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.List;
 /**
@@ -20,14 +22,18 @@ public class Scheduler extends Thread {
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
 	private DatagramSocket schedulerSocket; // Socket at port 23, used to send and receive packet 
+	private InetAddress address; 
 	
 	public Scheduler (List<ElevatorSystem> elevators) {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		try {
 			this.schedulerSocket = new DatagramSocket(23);
+			 InetAddress.getLocalHost();
 		} catch (SocketException e) {
 			System.out.println("Scheduler: Fail to create socket 23");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
 		}
 		for (ElevatorSystem elevator: elevators) {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
@@ -129,5 +135,9 @@ public class Scheduler extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public InetAddress getAddress() {
+		return address;
 	}
 }

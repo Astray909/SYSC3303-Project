@@ -58,7 +58,7 @@ public class Floor implements Runnable {
 			out = new ObjectOutputStream(data);
 			out.writeObject(request);
 			out.flush();
-			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, 23);
+			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, scheduler.getAddress(), 23);
 			this.sendSocket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
