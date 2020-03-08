@@ -49,3 +49,5 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * **Zhe Ji**: Main Class, Scheduler
 * **Simon Yacoub**: Floor, Building
 * **Jia Chen Huang**: ElevatorSystem
+* **Reflection on how concurrency control at the scheduler changed from Iteration 2 to Iteration 3.**
+* placeholder
