@@ -1,4 +1,5 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class SchedulerTest {
 		build.parseRequest(requests);
 		scheduler.sendAndReceive();
 		elevator1.sendAndReceive();
-		assertEquals(elevator1.getTestRequest(), request);
+		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 	
 	@Test
@@ -52,6 +53,6 @@ public class SchedulerTest {
 		build.parseRequest(requests);
 		scheduler.sendAndReceive();
 		elevator1.sendAndReceive();
-		assertEquals(elevator1.getTestRequest(), request);
+		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 }
