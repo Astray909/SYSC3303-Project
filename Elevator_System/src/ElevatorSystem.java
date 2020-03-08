@@ -60,50 +60,74 @@ public class ElevatorSystem extends Thread
 
 	public void sendAndReceive()
 	{
-		//receivePacket = Scheduler.sendPacket(receiveSocket, "Scheduler");
-		byte[] data = receivePacket.getData();
+		receivePacket = waitForPacket(receiveSocket);
+
+		ByteArrayInputStream bis = new ByteArrayInputStream(receivePacket.getData());
+		ObjectInputStream in = null;
+
+		try {
+			in = new ObjectInputStream(bis);
+			try {
+				Request request = (Request) in.readObject();
+				this.getRequest(request);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Scheduler: Error parse request from packet");
+			} finally {
+				in.close();
+			}
+
+		} catch (IOException e) {
+			System.out.println("Scheduler: Error parse packet.");
+		}
 
 		byte[] replyData = null;
 
 		System.out.println("Elevator: Packet sending");
-		sendPacket(replyData, replyData.length, receivePacket.getAddress(), 23, sendSocket, "Elevator");
+		//sendPacket(null);
 		System.out.println("Send Packet: Success");
-
-		return;
 	}
-	
-	/**
-	 * builds and sends a new Packet
-	 * @param msg: the message you want to send
-	 * @param len: length of the message
-	 * @param desti: destination ip
-	 * @param port: destination port
-	 * @param s: source socket
-	 * @param source: source address
-	 */
-	public static void sendPacket(byte[]msg, int len, InetAddress desti, int port, DatagramSocket s, String source)
+
+	public static DatagramPacket waitForPacket(DatagramSocket s)
 	{
-		DatagramPacket packet = new DatagramPacket(msg, len, desti, port);
-		System.out.println("The source " + source + " is sending a packet:");
 
-		//prints out information about the packet
-		System.out.println("Packet from host: " + packet.getAddress());
-		System.out.println("From host port: " + packet.getPort());
-		System.out.println("Length: " + packet.getLength());
-		System.out.print("Containing: " );
-		print(msg, msg.length);
+		DatagramPacket receivePacket = new DatagramPacket(new byte[1000], 1000);
+		System.out.println("Waiting for Packet.\n");
 
-		try
-		{
-			s.send(packet);
-		} catch (IOException ie)
-		{
-			ie.printStackTrace();
+
+		try {
+			System.out.println("Waiting...");
+			s.receive(receivePacket);
+		} catch (IOException e) {
+			System.out.print("IO Exception: likely:");
+			System.out.println("Receive Socket Timed Out.\n" + e);
+			e.printStackTrace();
 			System.exit(1);
 		}
-		System.out.println(source + ": packet sent\n");
+
+		System.out.println("Packet received:");
+		//prints out information about the packet
+		System.out.println("Packet from host: " + receivePacket.getAddress());
+		System.out.println("From host port: " + receivePacket.getPort());
+		System.out.println("Length: " + receivePacket.getLength());
+
+		return receivePacket;
 	}
-	
+
+	private void sendPacket (Request request) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(bos);
+			out.writeObject(request);
+			out.flush();
+			DatagramPacket sendPacket = new DatagramPacket(bos.toByteArray(), bos.toByteArray().length, 23);
+			this.sendSocket.send(sendPacket);
+		} catch (IOException e) {
+			System.out.println("Elevator: Error create output stream.");
+		}
+	}
+
 	/**
 	 * prints out the contents of a byte array
 	 * @param bytes: the byte array
@@ -219,12 +243,14 @@ public class ElevatorSystem extends Thread
 	 */
 	private void moveElevator()
 	{
+		sendAndReceive();
 		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
 		delay(3);
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
 		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
 		selectedFloors.remove(0);
+		
 	}
 
 	/**
