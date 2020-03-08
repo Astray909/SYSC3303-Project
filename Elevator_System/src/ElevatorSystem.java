@@ -24,7 +24,6 @@ public class ElevatorSystem extends Thread
 
 	private static DatagramPacket receivePacket;
 	private static DatagramSocket sendSocket, receiveSocket;
-	private InetAddress address; 
 
 	/**
 	 * Constructor for ElevatorSystem
@@ -37,13 +36,7 @@ public class ElevatorSystem extends Thread
 		try
 		{
 			sendSocket = new DatagramSocket();
-			receiveSocket = new DatagramSocket(); //Bind to available port
-			portNum = receiveSocket.getLocalPort(); //Record port number in portNum
-			try {
-				address = InetAddress.getLocalHost();
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-			}
+			receiveSocket = new DatagramSocket(portNum);
 		}
 		catch (SocketException se)
 		{
@@ -63,10 +56,6 @@ public class ElevatorSystem extends Thread
 	public int getPortNum ()
 	{
 		return this.portNum;
-	}
-	
-	public InetAddress getAddress() {
-		return address;
 	}
 
 	public void sendAndReceive()
@@ -254,7 +243,7 @@ public class ElevatorSystem extends Thread
 	 */
 	private void moveElevator()
 	{
-		//sendAndReceive(); the method is waiting for packet that will not come
+		sendAndReceive();
 		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
 		delay(3);
 		goToFloor(selectedFloors.get(0));
