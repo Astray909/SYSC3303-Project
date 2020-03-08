@@ -140,4 +140,8 @@ public class Scheduler extends Thread {
 	public InetAddress getAddress() {
 		return address;
 	}
+	
+	public DatagramSocket getSchedulerSocket() {
+		return schedulerSocket;
+	}
 }
