@@ -76,7 +76,6 @@ public class ElevatorSystem extends Thread
 			}
 			catch (ClassNotFoundException e)
 			{
-				// TODO Auto-generated catch block
 				System.out.println("Elevator: Error parse request from packet");
 			}
 			finally
@@ -305,5 +304,10 @@ public class ElevatorSystem extends Thread
 	public InetAddress getAddress()
 	{
 		return address;
+	}
+
+	public static void main (String[] args) {
+		ElevatorSystem elevator = new ElevatorSystem(1);
+		elevator.sendAndReceive();
 	}
 }
