@@ -64,7 +64,7 @@ public class Floor implements Runnable {
 			e.printStackTrace();
 			System.out.println("Scheduler: Error create output stream.");
 		}
-		//scheduler.getRequest(request); //Old method for sending requests to a scheduler
+		
 
 
 	}
