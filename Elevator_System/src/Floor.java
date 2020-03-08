@@ -20,7 +20,7 @@ public class Floor implements Runnable {
 	 */
 	private int floorNumber;
 	
-	private DatagramSocket sendSocket; //Socket used by floor to send requests to the scheduler
+	private DatagramSocket sendSocket; 
 
 
 	/**
@@ -32,7 +32,7 @@ public class Floor implements Runnable {
 		this.floorNumber = floorNumber;
 		this.scheduler = scheduler;
 		try {
-			sendSocket = new DatagramSocket();
+			sendSocket = new DatagramSocket(); 
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +59,7 @@ public class Floor implements Runnable {
 			out.writeObject(request);
 			out.flush();
 			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, scheduler.getAddress(), 23);
-			this.sendSocket.send(sendPacket);
+			sendSocket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Scheduler: Error create output stream.");

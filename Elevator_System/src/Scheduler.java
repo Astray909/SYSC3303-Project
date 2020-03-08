@@ -29,7 +29,7 @@ public class Scheduler extends Thread {
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		try {
 			this.schedulerSocket = new DatagramSocket(23);
-			 InetAddress.getLocalHost();
+			 address = InetAddress.getLocalHost();
 		} catch (SocketException e) {
 			System.out.println("Scheduler: Fail to create socket 23");
 		} catch (UnknownHostException e) {
