@@ -301,7 +301,11 @@ public class ElevatorSystem extends Thread
 	{
 		return request;
 	}
-
+	
+	/**
+	 * getter for variable address to be used in sending packets to the class
+	 * @return the address of the elevator
+	 */
 	public InetAddress getAddress()
 	{
 		return address;
