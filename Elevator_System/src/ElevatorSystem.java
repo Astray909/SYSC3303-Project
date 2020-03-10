@@ -280,7 +280,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			//delay(10);
+			this.sendAndReceive();
 		}
 	}
 

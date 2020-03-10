@@ -7,7 +7,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 /**
@@ -21,19 +21,15 @@ public class Scheduler extends Thread {
 
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
-	private DatagramSocket schedulerSocket; // Socket at port 23, used to send and receive packet 
-	private InetAddress address; 
+	private DatagramSocket schedulerSocket; // Socket at port 23, used to send and receive packet  
 	
 	public Scheduler (List<ElevatorSystem> elevators) {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		try {
 			this.schedulerSocket = new DatagramSocket(23);
-			 address = InetAddress.getLocalHost();
 		} catch (SocketException e) {
 			System.out.println("Scheduler: Fail to create socket 23");
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
 		}
 		for (ElevatorSystem elevator: elevators) {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
@@ -42,7 +38,7 @@ public class Scheduler extends Thread {
 
 	@Override
 	public void run() {
-
+		
 	}
 
 	/**
@@ -81,7 +77,8 @@ public class Scheduler extends Thread {
 				}
 			}
 		}
-		this.sendPacket(request, desiredElevator);
+		//this.sendPacket(request, desiredElevator);
+		desiredElevator.getRequest(request);
 		
 	}
 
@@ -96,6 +93,9 @@ public class Scheduler extends Thread {
 				in = new ObjectInputStream(bis);
 				try {
 					Request request = (Request) in.readObject();
+					this.getRequest(request);
+					System.out.println("Scheduler: Get request from building.");
+					System.out.println(request.toString());
 					this.getRequest(request);
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -119,7 +119,7 @@ public class Scheduler extends Thread {
 			out = new ObjectOutputStream(bos);
 			out.writeObject(request);
 			out.flush();
-			DatagramPacket sendPacket = new DatagramPacket(bos.toByteArray(), bos.toByteArray().length, elevator.getAddress(), elevator.getPortNum());
+			DatagramPacket sendPacket = new DatagramPacket(bos.toByteArray(), bos.toByteArray().length, InetAddress.getLocalHost(), elevator.getPortNum());
 			this.schedulerSocket.send(sendPacket);
 		} catch (IOException e) {
 			System.out.println("Scheduler: Error create output stream.");
@@ -137,11 +137,21 @@ public class Scheduler extends Thread {
 		}
 	}
 
-	public InetAddress getAddress() {
-		return address;
+	public void addElevator (ElevatorSystem elevator) {
+		Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
 	}
-	
 	public DatagramSocket getSchedulerSocket() {
 		return schedulerSocket;
+	}
+
+	public static void main (String[] args) {
+		ElevatorSystem elevator = new ElevatorSystem(1);
+		elevator.setPortNum(69);
+		List <ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
+		elevators.add(elevator);
+		Scheduler scheduler = new Scheduler(elevators);
+		while (true) {
+			scheduler.sendAndReceive();
+		}
 	}
 }
