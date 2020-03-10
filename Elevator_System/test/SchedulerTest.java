@@ -27,7 +27,7 @@ public class SchedulerTest {
 		elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
 		scheduler = new Scheduler(elevators);
-		build = new Building(10, scheduler);
+		//build = new Building(10, scheduler);
 		requests = new ArrayList<Request>();
 	}
 	

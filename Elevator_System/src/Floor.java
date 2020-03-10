@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 /**
@@ -10,7 +11,7 @@ import java.net.SocketException;
  * elevators and for simulating all button presses and lamps. It should also
  * test for the proper operation of the elevator
  */
-public class Floor implements Runnable {
+public class Floor extends Thread {
 	private Scheduler scheduler;
 
 	/**
@@ -40,6 +41,7 @@ public class Floor implements Runnable {
 
 	@Override
 	public void run() {
+		
 
 	}
 
@@ -58,7 +60,7 @@ public class Floor implements Runnable {
 			out = new ObjectOutputStream(data);
 			out.writeObject(request);
 			out.flush();
-			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, scheduler.getAddress(), 23);
+			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, InetAddress.getLocalHost(), 23);
 			sendSocket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();

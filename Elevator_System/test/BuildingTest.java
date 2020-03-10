@@ -23,7 +23,7 @@ class BuildingTest {
 		elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
 		scheduler = new Scheduler(elevators);
-		building = new Building(5, scheduler);
+		/*building = new Building(5, scheduler);*/
 		building.startFloors();
 	}
 	

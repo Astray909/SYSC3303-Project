@@ -12,10 +12,12 @@ public class mainClass {
 		ElevatorSystem elevator = new ElevatorSystem(0);
 		List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
 		elevators.add(elevator);
-		Scheduler scheduler = new Scheduler(elevators);
+		Thread scheduler = new Scheduler(elevators);
 		CSVParser parser = new CSVParser("CSVfile");
-		Building build = new Building(10, scheduler);
+		Building build = new Building(10);
 		build.parseRequest(parser.getRequests());
+		scheduler.run();
+		elevator.run();
 	}
 
 

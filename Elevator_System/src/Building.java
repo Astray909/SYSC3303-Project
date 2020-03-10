@@ -18,8 +18,7 @@ public class Building {
 	 * @param numOfFloors The number of floors the building has.
 	 * @param scheduler The scheduler responsible for scheduling the floors.
 	 */
-	public Building(int numOfFloors, Scheduler scheduler) {
-		this.scheduler = scheduler;
+	public Building(int numOfFloors) {
 		floors = new ArrayList<Floor>();
 
 		for(int floorNumber = 0; floorNumber < numOfFloors; floorNumber++) {
@@ -56,5 +55,10 @@ public class Building {
 	public ArrayList<Floor> getFloors() {
 		return this.floors;
 	}
-
+	
+	public static void main (String[] args) {
+		Building build = new Building(10);
+		CSVParser parser = new CSVParser("CSVfile");
+		build.parseRequest(parser.getRequests());
+	}
 }
