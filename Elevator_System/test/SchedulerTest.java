@@ -42,7 +42,7 @@ public class SchedulerTest {
 		requests.add(request);
 		build.parseRequest(requests);
 		scheduler.sendAndReceive();
-		elevator1.sendAndReceive();
+		//elevator1.sendAndReceive();
 		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 	
@@ -52,7 +52,7 @@ public class SchedulerTest {
 		requests.add(request);
 		build.parseRequest(requests);
 		scheduler.sendAndReceive();
-		elevator1.sendAndReceive();
+		//elevator1.sendAndReceive();
 		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 }

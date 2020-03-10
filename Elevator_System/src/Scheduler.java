@@ -27,7 +27,7 @@ public class Scheduler extends Thread {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		try {
-			this.schedulerSocket = new DatagramSocket(23);
+			this.schedulerSocket = new DatagramSocket(2333);
 		} catch (SocketException e) {
 			System.out.println("Scheduler: Fail to create socket 23");
 		}
@@ -93,7 +93,6 @@ public class Scheduler extends Thread {
 				in = new ObjectInputStream(bis);
 				try {
 					Request request = (Request) in.readObject();
-					this.getRequest(request);
 					System.out.println("Scheduler: Get request from building.");
 					System.out.println(request.toString());
 					this.getRequest(request);

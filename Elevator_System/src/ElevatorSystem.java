@@ -59,7 +59,7 @@ public class ElevatorSystem extends Thread
 		return this.portNum;
 	}
 
-	public void sendAndReceive()
+	/*public void sendAndReceive()
 	{
 		receivePacket = waitForPacket(receiveSocket);
 
@@ -95,33 +95,33 @@ public class ElevatorSystem extends Thread
 		System.out.println("Elevator: Packet sending");
 		//sendPacket(null);
 		System.out.println("Send Packet: Success");
-	}
+	}*/
 
-	public static DatagramPacket waitForPacket(DatagramSocket s)
+	public DatagramPacket waitForPacket(DatagramSocket s)
 	{
 
 		DatagramPacket receivePacket = new DatagramPacket(new byte[1000], 1000);
-		System.out.println("Waiting for Packet.\n");
+		System.out.println("Elevator: Waiting for Packet.\n");
 
 
 		try
 		{
-			System.out.println("Waiting...");
+			System.out.println("Elevator: Waiting...");
 			s.receive(receivePacket);
 		}
 		catch (IOException e)
 		{
-			System.out.print("IO Exception: likely:");
-			System.out.println("Receive Socket Timed Out.\n" + e);
+			System.out.print("Elevator: IO Exception: likely:");
+			System.out.println("Elevator: Receive Socket Timed Out.\n" + e);
 			e.printStackTrace();
 			System.exit(1);
 		}
 
-		System.out.println("Packet received:");
+		System.out.println("Elevator: Packet received:");
 		//prints out information about the packet
-		System.out.println("Packet from host: " + receivePacket.getAddress());
-		System.out.println("From host port: " + receivePacket.getPort());
-		System.out.println("Length: " + receivePacket.getLength());
+		System.out.println("Elevator: Packet from host: " + receivePacket.getAddress());
+		System.out.println("Elevator: From host port: " + receivePacket.getPort());
+		System.out.println("Elevator: Length: " + receivePacket.getLength());
 
 		return receivePacket;
 	}
@@ -263,7 +263,7 @@ public class ElevatorSystem extends Thread
 	 */
 	private void moveElevator()
 	{
-		sendAndReceive();
+		//sendAndReceive();
 		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
 		delay(3);
 		goToFloor(selectedFloors.get(0));
@@ -289,7 +289,7 @@ public class ElevatorSystem extends Thread
 	{
 		while(true)
 		{
-			this.sendAndReceive();
+			//this.sendAndReceive();
 		}
 	}
 

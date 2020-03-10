@@ -43,7 +43,7 @@ public class FloorTest {
 		Request request = new Request(1, true, 2, "10:20:10");
 		floor.sendRequest(request);
 		scheduler.sendAndReceive();
-		elevator1.sendAndReceive();
+		//elevator1.sendAndReceive();
 		assertTrue(elevator1.getTestRequest().equals(request));
 	}
 }
