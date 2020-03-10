@@ -21,15 +21,15 @@ public class Scheduler extends Thread {
 
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
-	private DatagramSocket schedulerSocket; // Socket at port 23, used to send and receive packet  
+	private DatagramSocket schedulerSocket; // Socket at port 2333, used to send and receive packet  
 	
 	public Scheduler (List<ElevatorSystem> elevators) {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
 		try {
-			this.schedulerSocket = new DatagramSocket(23);
+			this.schedulerSocket = new DatagramSocket(2333);
 		} catch (SocketException e) {
-			System.out.println("Scheduler: Fail to create socket 23");
+			System.out.println("Scheduler: Fail to create socket 2333");
 		}
 		for (ElevatorSystem elevator: elevators) {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
@@ -146,7 +146,7 @@ public class Scheduler extends Thread {
 
 	public static void main (String[] args) {
 		ElevatorSystem elevator = new ElevatorSystem(1);
-		elevator.setPortNum(69);
+		elevator.setPortNum(10086);
 		List <ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
 		elevators.add(elevator);
 		Scheduler scheduler = new Scheduler(elevators);

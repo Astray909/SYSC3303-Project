@@ -60,7 +60,7 @@ public class Floor extends Thread {
 			out = new ObjectOutputStream(data);
 			out.writeObject(request);
 			out.flush();
-			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, InetAddress.getLocalHost(), 23);
+			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, InetAddress.getLocalHost(), 2333);
 			sendSocket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
