@@ -309,9 +309,4 @@ public class ElevatorSystem extends Thread
 	{
 		return address;
 	}
-
-	public static void main (String[] args) {
-		ElevatorSystem elevator = new ElevatorSystem(1);
-		elevator.sendAndReceive();
-	}
 }
