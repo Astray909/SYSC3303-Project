@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.lang.Math.*;
 import java.io.*;
 import java.net.*;
 /**
@@ -223,7 +223,7 @@ public class ElevatorSystem extends Thread
 	{
 		try
 		{
-			Thread.sleep(delay * 1000);//delay in seconds.
+			Thread.sleep(delay * 3000);//delay in seconds.
 		}
 		catch (InterruptedException e)
 		{}
@@ -264,8 +264,8 @@ public class ElevatorSystem extends Thread
 	private void moveElevator()
 	{
 		//sendAndReceive();
-		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
-		delay(1);
+		System.out.println("Elevator gets the request and moving from floor "+ this.currFloor + " to floor "+ selectedFloors.get(0));
+		delay(Math.abs(this.currFloor - selectedFloors.get(0)));
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
 		if(!error)
