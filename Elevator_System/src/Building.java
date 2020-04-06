@@ -44,7 +44,7 @@ public class Building implements Runnable{
 		for(Request req: requests) {
 			Floor sourceFloor = floors.get(req.getSource());
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
