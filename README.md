@@ -16,7 +16,12 @@ The system consists of a scheduler, an elevator simulation algorithm, and a simu
 * Verify JRE System Library is set to jre-10 or higher
 * Verify that all source files are placed in src directory
 * Verify that a CSV input with the correct formatting is present
-* Run the mainClass.java file as Java Application
+* On the computer that will be acting as the scheduler/elevators, run ElevatorSystemGUI.java 
+and select Scheduler and Elevators Set Up
+* Transfer the files to the computer acting as the building(aggregation of floors), we pushed
+the files to github and then pulled them on the floors computer.
+* Run ElevatorSystemGUI on both computers, on the scheduler computer press "simulate scheduler..."
+then on the floors computer press "simulate floors".
 
 ## Testing Instructions
 * In Eclipse IDE, inside the Package Explorer tab, expand test folder
