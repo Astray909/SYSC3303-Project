@@ -265,7 +265,7 @@ public class ElevatorSystem extends Thread
 	{
 		//sendAndReceive();
 		System.out.println("Elevator gets the request and moving from floor "+this.currFloor + " to floor "+ selectedFloors.get(0));
-		delay(3);
+		delay(1);
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
 		if(!error)
@@ -274,6 +274,18 @@ public class ElevatorSystem extends Thread
 		}
 		selectedFloors.remove(0);
 
+	}
+	
+	/**
+	 * hold door open
+	 * @param oc true for open, false for close
+	 */
+	public void holdDoor(boolean oc)
+	{
+		if(oc)
+		{
+			delay(5);
+		}
 	}
 
 	/**
