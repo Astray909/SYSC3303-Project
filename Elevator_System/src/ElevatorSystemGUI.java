@@ -59,9 +59,10 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 			Setup.serializeInetAddress("FloorsAddress.txt");
 			System.out.print("FloorsAddress serilaized");
 			
-		}else if(action.equals("Scheduler and Elevator Set Up")) {
+		}else if(action.equals("Scheduler and Elevators Set Up")) {
 			Setup.serializeInetAddress("SchedulerElevatorAddress.txt");
-			
+			System.out.print("SchedulerElevatorAddress serilaized");
+		
 		}else if(action.contentEquals("Simulate Scheduler and Elevator response")){
 			ElevatorSystem elevator = new ElevatorSystem(0);
 			List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
