@@ -12,6 +12,7 @@ import java.net.SocketException;
  * test for the proper operation of the elevator
  */
 public class Floor extends Thread {
+	//private InetAddress schedulerAddr = InetAddress.getLocalHost();
 	private Scheduler scheduler;
 
 	/**
@@ -27,29 +28,14 @@ public class Floor extends Thread {
 	/**
 	 * Constructor for floor
 	 * @param floorNumber The floor number
-	 * @param scheduler The scheduler responsible for handling requests sent from the floor
 	 */
-	public Floor(int floorNumber, Scheduler scheduler) {
+	public Floor(int floorNumber) {
 		this.floorNumber = floorNumber;
-		this.scheduler = scheduler;
 		try {
 			sendSocket = new DatagramSocket(); 
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void run() {
-		
-
-	}
-
-
-
-	public Request generateRequest() {
-		boolean upOrDown = Math.random() < 0.5; // 50% true, 50% false
-		return new Request(floorNumber, upOrDown);
 	}
 
 	public void sendRequest(Request request) {
@@ -60,15 +46,13 @@ public class Floor extends Thread {
 			out = new ObjectOutputStream(data);
 			out.writeObject(request);
 			out.flush();
-			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, InetAddress.getLocalHost(), 2333);
+			//TODO Refactor InetAddress.getLocalHost() (This is scheduler address)
+			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, InetAddress.getLocalHost(), 53266);
 			sendSocket.send(sendPacket);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("Scheduler: Error create output stream.");
 		}
-		
-
-
 	}
 
 	/**

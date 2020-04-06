@@ -17,8 +17,9 @@ import java.util.List;
  *
  */
 
-public class Scheduler extends Thread {
+public class Scheduler implements Runnable {
 
+	private static final int schedulerPortNum = 53266;
 	private List<ElevatorSystem> elevators; //All elevators in the system
 	private static HashMap<ElevatorSystem, Integer> elevatorStatus;
 	private DatagramSocket schedulerSocket; // Socket at port 2333, used to send and receive packet  
@@ -26,18 +27,9 @@ public class Scheduler extends Thread {
 	public Scheduler (List<ElevatorSystem> elevators) {
 		this.elevators = elevators;
 		Scheduler.elevatorStatus = new HashMap<ElevatorSystem, Integer>();
-		try {
-			this.schedulerSocket = new DatagramSocket(2333);
-		} catch (SocketException e) {
-			System.out.println("Scheduler: Fail to create socket 2333");
-		}
 		for (ElevatorSystem elevator: elevators) {
 			Scheduler.elevatorStatus.put(elevator, elevator.getCurrFloor());
 		}
-	}
-
-	@Override
-	public void run() {
 		
 	}
 
@@ -85,7 +77,8 @@ public class Scheduler extends Thread {
 	public void sendAndReceive () {
 		DatagramPacket packet = new DatagramPacket(new byte[1000], 1000);
 		try {
-			this.schedulerSocket.receive(packet);
+			schedulerSocket = new DatagramSocket(schedulerPortNum);
+			schedulerSocket.receive(packet);
 			ByteArrayInputStream bis = new ByteArrayInputStream(packet.getData());
 			ObjectInputStream in = null;
 			
@@ -106,8 +99,12 @@ public class Scheduler extends Thread {
 			} catch (IOException e) {
 				System.out.println("Scheduler: Error parse packet.");
 			}
-		} catch (IOException e) {
+		} catch (SocketException e) {
+			System.out.println("Scheduler Socket exception");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
 			System.out.println("Scheduler: Error receive packet.");
+			e1.printStackTrace();
 		}
 	}
 	
@@ -143,7 +140,8 @@ public class Scheduler extends Thread {
 		return schedulerSocket;
 	}
 
-	public static void main (String[] args) {
+	@Override
+	public void run() {
 		ElevatorSystem elevator = new ElevatorSystem(1);
 		elevator.setPortNum(10086);
 		List <ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
@@ -153,4 +151,5 @@ public class Scheduler extends Thread {
 			scheduler.sendAndReceive();
 		}
 	}
+	
 }

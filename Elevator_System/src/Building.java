@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author Simon
  *
  */
-public class Building {
+public class Building implements Runnable{
 
 	/** The floors in the building */
 	ArrayList<Floor> floors;
@@ -22,7 +22,7 @@ public class Building {
 		floors = new ArrayList<Floor>();
 
 		for(int floorNumber = 0; floorNumber < numOfFloors; floorNumber++) {
-			floors.add(new Floor(floorNumber, scheduler));
+			floors.add(new Floor(floorNumber));
 		}
 	}
 
@@ -55,10 +55,10 @@ public class Building {
 	public ArrayList<Floor> getFloors() {
 		return this.floors;
 	}
-	
-	public static void main (String[] args) {
-		Building build = new Building(10);
+
+	@Override
+	public void run() {
 		CSVParser parser = new CSVParser("CSVfile");
-		build.parseRequest(parser.getRequests());
+		this.parseRequest(parser.getRequests());
 	}
 }

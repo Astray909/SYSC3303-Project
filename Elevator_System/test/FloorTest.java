@@ -24,18 +24,12 @@ public class FloorTest {
 		elevator1 = new ElevatorSystem(1);
 		elevators.add(elevator1);
 		scheduler = new Scheduler(elevators);
-		floor = new Floor(1, scheduler);
+		floor = new Floor(1);
 	}
 	
 	@AfterEach
 	void tearDown() {
 		scheduler.getSchedulerSocket().close();
-	}
-	
-	@Test
-	void testGenerateRequest() {
-		Request request = floor.generateRequest();
-		assertEquals(request.getSource(), 1);
 	}
 
 	@Test
