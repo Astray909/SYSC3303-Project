@@ -21,6 +21,7 @@ public class ElevatorSystem extends Thread
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 	private int portNum; //port number for the elevator
+	private boolean error = false;
 
 	private static DatagramPacket receivePacket;
 	private static DatagramSocket sendSocket, receiveSocket;
@@ -267,7 +268,10 @@ public class ElevatorSystem extends Thread
 		delay(3);
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
-		System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
+		if(!error)
+		{
+			System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
+		}
 		selectedFloors.remove(0);
 
 	}
@@ -300,7 +304,7 @@ public class ElevatorSystem extends Thread
 	{
 		return request;
 	}
-	
+
 	/**
 	 * getter for variable address to be used in sending packets to the class
 	 * @return the address of the elevator
