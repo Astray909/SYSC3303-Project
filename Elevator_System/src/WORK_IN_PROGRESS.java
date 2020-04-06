@@ -14,7 +14,6 @@ public class WORK_IN_PROGRESS extends JFrame implements ActionListener{
 	private static final int GRID_H = 3;
 	ElevatorSystem elevator = new ElevatorSystem(0);
 	List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
-	
 	Scheduler scheduler = new Scheduler(elevators);
 
 	/**
