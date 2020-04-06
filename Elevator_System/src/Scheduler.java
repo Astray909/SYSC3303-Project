@@ -81,7 +81,7 @@ public class Scheduler implements Runnable {
 			schedulerSocket.receive(packet);
 			ByteArrayInputStream bis = new ByteArrayInputStream(packet.getData());
 			ObjectInputStream in = null;
-			
+			schedulerSocket.close();
 			try {
 				in = new ObjectInputStream(bis);
 				try {

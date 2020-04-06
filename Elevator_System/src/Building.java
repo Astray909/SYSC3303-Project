@@ -43,6 +43,12 @@ public class Building implements Runnable{
 	public void parseRequest(ArrayList<Request> requests) {
 		for(Request req: requests) {
 			Floor sourceFloor = floors.get(req.getSource());
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			sourceFloor.sendRequest(req);
 		}
 

@@ -46,7 +46,6 @@ public class Floor extends Thread {
 			out = new ObjectOutputStream(data);
 			out.writeObject(request);
 			out.flush();
-			//TODO Refactor InetAddress.getLocalHost() (This is scheduler address)
 			DatagramPacket sendPacket = new DatagramPacket(data.toByteArray(), data.toByteArray().length, Setup.deserializeInetAddress("SchedulerElevatorAddress.txt"), 53266);
 			sendSocket.send(sendPacket);
 		} catch (IOException e) {
