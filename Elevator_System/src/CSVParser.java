@@ -33,7 +33,7 @@ public class CSVParser {
 	private void readFile() {
 		String line, time;
 		boolean isUp = false;
-		int sourceFloor, destFloor;
+		int sourceFloor, destFloor, error;
 		try {
 			File myFile = new File("./src/" + this.fileName);
 			br = new BufferedReader(new FileReader(myFile));
@@ -43,12 +43,13 @@ public class CSVParser {
 				time = info[0];
 				destFloor = Integer.valueOf(info[3]);
 				sourceFloor = Integer.valueOf(info[1]);
+				error = Integer.valueOf(info[4]);
 				if (info[2].toUpperCase().equals(this.UPButton)) {
 					isUp = true;
 				} else if (info[2].toUpperCase().equals(this.downButton)) {
 					isUp = false;
 				}
-				Request request = new Request(sourceFloor,isUp, destFloor, time);
+				Request request = new Request(sourceFloor,isUp, destFloor, time, error);
 				this.requests.add(request);
 			}
 		} catch (FileNotFoundException e) {

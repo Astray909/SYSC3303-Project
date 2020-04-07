@@ -11,6 +11,7 @@ public class Request implements Serializable{
 
 	private int sourceFloor;  // floor of the passenger
 	private int destFloor; // floor that passenger wants to go 
+	private int error;
 	private LocalTime timeStamp; //current time stamp once request created
 	private boolean direction; //represent up or down button, true-->up, false--> down
 
@@ -21,11 +22,12 @@ public class Request implements Serializable{
 
 	}
 
-	public Request(int sourceFloor, boolean direction, int destFloor, String time) {
+	public Request(int sourceFloor, boolean direction, int destFloor, String time, int error) {
 
 		this.sourceFloor = sourceFloor;
 		this.direction = direction;
 		this.destFloor = destFloor;
+		this.error = error;
 		LocalTime timeStamp = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm:ss"));
 		this.timeStamp = timeStamp;
 
@@ -62,6 +64,15 @@ public class Request implements Serializable{
 	 */
 	public boolean getDirection () {
 		return this.direction;
+	}
+	
+	/**
+	 * Getter for error codes, 0 for no error, 1 for overtime, 2 for elevator stuck, 3 for elevator door hold open
+	 * @return
+	 */
+	public int getError()
+	{
+		return this.error;
 	}
 
 	/**
