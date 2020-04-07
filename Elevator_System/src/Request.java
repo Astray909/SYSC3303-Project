@@ -67,7 +67,7 @@ public class Request implements Serializable{
 	}
 	
 	/**
-	 * Getter for error codes, 0 for no error, 1 for overtime, 2 for elevator stuck, 3 for elevator door hold open
+	 * Getter for error codes, 0 for no error, 1 for overtime, 2 for elevator stuck
 	 * @return
 	 */
 	public int getError()

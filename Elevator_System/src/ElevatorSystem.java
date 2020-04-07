@@ -21,7 +21,8 @@ public class ElevatorSystem extends Thread
 	private int id;//elevator car id
 	private int currFloor;//floor the car is currently on
 	private int portNum; //port number for the elevator
-	private boolean error = false;
+	private boolean errorB = false;
+	private int error;
 
 	private static DatagramPacket receivePacket;
 	private static DatagramSocket sendSocket, receiveSocket;
@@ -184,6 +185,7 @@ public class ElevatorSystem extends Thread
 		this.request = request;
 		direction = this.request.getDirection();
 		addFloorRequest(direction, this.request.getDest());
+		error = this.request.getError();
 		moveElevator();
 	}
 
@@ -265,15 +267,32 @@ public class ElevatorSystem extends Thread
 	{
 		//sendAndReceive();
 		System.out.println("Elevator gets the request and moving from floor "+ this.currFloor + " to floor "+ selectedFloors.get(0));
+		if(error != 0)
+		{
+			if(error == 1)
+			{
+				System.out.println("The door has reached maximum open time, will close in 3 seconds");
+				delay(1);
+				delay(Math.abs(this.currFloor - selectedFloors.get(0)));
+				goToFloor(selectedFloors.get(0));
+				Scheduler.elevatorFloor(this, selectedFloors.get(0));
+				selectedFloors.remove(0);
+				return;
+			}
+			else if(error == 2)
+			{
+				System.out.println("The elevator is stuck on floor " + this.currFloor);
+				return;
+			}
+		}
 		delay(Math.abs(this.currFloor - selectedFloors.get(0)));
 		goToFloor(selectedFloors.get(0));
 		Scheduler.elevatorFloor(this, selectedFloors.get(0));
-		if(!error)
+		if(!errorB)
 		{
 			System.out.println("The elevator has moved to floor " + selectedFloors.get(0) + "\n");
 		}
 		selectedFloors.remove(0);
-
 	}
 	
 	/**
