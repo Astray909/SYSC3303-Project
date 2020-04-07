@@ -221,11 +221,11 @@ public class ElevatorSystem extends Thread
 	/**
 	 * adds appropriate delays
 	 */
-	private void delay(double d)
+	private void delay(int d)
 	{
 		try
 		{
-			Thread.sleep((long) (d * 3000));//delay in seconds.
+			Thread.sleep(d * 3000);//delay in seconds.
 		}
 		catch (InterruptedException e)
 		{}
@@ -303,7 +303,7 @@ public class ElevatorSystem extends Thread
 	{
 		if(oc)
 		{
-			delay(0.5);
+			delay(1);
 		}
 	}
 
