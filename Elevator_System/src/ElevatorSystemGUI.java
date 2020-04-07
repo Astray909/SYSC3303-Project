@@ -81,7 +81,7 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 		 * being hosted on. 
 		 */
 		}else if(action.equals("Floors Set Up")) {
-			Setup.serializeInetAddress("FloorsAddress.txt");
+			Serializer.serializeInetAddress("FloorsAddress.txt");
 			System.out.print("FloorsAddress serilaized");
 			
 		/*
@@ -89,7 +89,7 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 		 * the Scheduler and Elevator are being hosted on.
 		 */
 		}else if(action.equals("Scheduler and Elevators Set Up")) {
-			Setup.serializeInetAddress("SchedulerElevatorAddress.txt");
+			Serializer.serializeInetAddress("SchedulerElevatorAddress.txt");
 			System.out.print("SchedulerElevatorAddress serilaized");
 		
 		/*

@@ -4,9 +4,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-public class Setup {
+/**
+ * This class is used by ElevatorSystemGUI to serialize/deserialize the InetAddress of localHosts
+ * @author Simon Yacoub
+ *
+ */
+public class Serializer {
 	
+	/**
+	 * serializeInetAddress Writes the InetAddress of the localhost running this method into a txt file.
+	 * @param fileName the name of the txt file
+	 */
 	public static void serializeInetAddress(String fileName) {
         try
         {    
@@ -22,10 +32,15 @@ public class Setup {
         }catch(IOException ex) 
         { 
             System.out.println("IOException is caught"); 
-        } 
+        }
   
 	}
 	
+	/**
+	 * deserializeInetAddress reads the txt files and deserializes them
+	 * @param fileName the name of the txt file
+	 * @returns InetAddress address The InetAddress of a localHost that has run serializeInetAddress.
+	 */
 	public static InetAddress deserializeInetAddress(String fileName) {
 		InetAddress address = null;
         try
