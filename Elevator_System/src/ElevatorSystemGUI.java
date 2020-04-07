@@ -8,17 +8,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+/**
+ * ElevatorSystemGUI - This class displays a menu for the elevator system. 
+ * @author Simon Yacoub
+ * @Version 7/04/2020
+ * 
+ *
+ */
 public class ElevatorSystemGUI extends JFrame implements ActionListener{
 
 	private static final int GRID_SZ = 2;
 
 	/**
-	 * Constructor for TTTView Displays a TicTacToe window made up of a JFrame with
-	 * a grid layout containing TTTButtons
-	 * 
-	 * @param model
-	 *            The model the TTTView is representing
+	 * Constructor for the ElevatorSystemGUI. Creates a menu with four buttons in a grid layout:
+	 * [1][2]
+	 * [3][4]
 	 */
+	
 	public ElevatorSystemGUI() {
 		super("Elevator System");
 		this.setLayout(new GridLayout(GRID_SZ,GRID_SZ));
@@ -44,25 +50,52 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Changes state of model
+	 * handles ActionEvents using handleAction(String action) method.
+	 * @param ActionEvent e the action event 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//converts button presses to String using e.getActionCommand();
 		String action = e.getActionCommand();
+		handleAction(action);
 		
+	}
+
+	/**
+	 * handleAction handles a button press performed on the gui.
+	 * @param action The action performed 
+	 */
+	private void handleAction(String action) {
+		
+		
+		/*
+		 * Simulate Floor Requests: This runs the building class which sends requests to the scheduler 
+		 */
 		if(action.equals("Simulate Floor Requests")) {
 			Thread buildingThread = new Thread(new Building(10));
 			buildingThread.run();
 			
+		/*
+		 * Floors Setup: This button is used to serialize the InetAddress of the localHost that the floors are 
+		 * being hosted on. 
+		 */
 		}else if(action.equals("Floors Set Up")) {
 			Setup.serializeInetAddress("FloorsAddress.txt");
 			System.out.print("FloorsAddress serilaized");
 			
+		/*
+		 * Scheduler and Elevators Set Up: This button is used to serialize the InetAddress of the localHost that
+		 * the Scheduler and Elevator are being hosted on.
+		 */
 		}else if(action.equals("Scheduler and Elevators Set Up")) {
 			Setup.serializeInetAddress("SchedulerElevatorAddress.txt");
 			System.out.print("SchedulerElevatorAddress serilaized");
 		
+		/*
+		 * Simulate Scheduler and Elevator response:This runs the scheduler class which receives and handles
+		 * requests from the floors.
+		 */
 		}else if(action.contentEquals("Simulate Scheduler and Elevator response")){
 			ElevatorSystem elevator = new ElevatorSystem(0);
 			List<ElevatorSystem> elevators = new ArrayList<ElevatorSystem>();
@@ -70,10 +103,12 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 			Scheduler scheduler = new Scheduler(elevators);
 			scheduler.run();
 		}
-		
-		
 	}
 	
+	/**
+	 * Main method for ElevatorSystem. 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new ElevatorSystemGUI();
 	}
