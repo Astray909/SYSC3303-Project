@@ -37,13 +37,13 @@ public class ElevatorSystemGUI extends JFrame implements ActionListener{
 		this.add(seButton);
 		seButton.addActionListener(this);
 		
-		JButton simFloorsButton = new JButton("Simulate Floor Requests");
-		this.add(simFloorsButton);
-		simFloorsButton.addActionListener(this);
-		
 		JButton simSEbutton = new JButton("Simulate Scheduler and Elevator response");
 		this.add(simSEbutton);
 		simSEbutton.addActionListener(this);
+		
+		JButton simFloorsButton = new JButton("Simulate Floor Requests");
+		this.add(simFloorsButton);
+		simFloorsButton.addActionListener(this);
 		
 		this.setSize(800, 800);
 		this.setVisible(true);
