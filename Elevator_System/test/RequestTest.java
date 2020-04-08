@@ -18,7 +18,7 @@ public class RequestTest {
 	
 	@BeforeEach
 	void setUp() {
-		request = new Request(2, true, 4, "10:20:10");
+		request = new Request(2, true, 4, "10:20:10", 0);
 	}
 
 	@Test
@@ -51,7 +51,18 @@ public class RequestTest {
 	
 	@Test
 	void downToStringTest() {
-		Request down = new Request(2, false, 1, "10:20:10");
+		Request down = new Request(2, false, 1, "10:20:10", 0);
 		assertEquals(down.toString(), "10:20:10 Source floor: " + 2 + "Directon: down");
+	}
+	
+	@Test
+	void getErrorTest() {
+		assertEquals(request.getError(), 0);
+	}
+	
+	@Test
+	void equalsTest() {
+		Request equals = new Request(2, true);
+		assertTrue(request.equals(equals));
 	}
 }
