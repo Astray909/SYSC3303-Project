@@ -48,11 +48,10 @@ then on the floors computer press "simulate floors".
 * **Simon Yacoub**: Floor, Building, State Machine
 * **Jia Chen Huang**: ElevatorSystem, UML Class diagram (updates for Iteration 2)
 
-## Breakdown of responsibilities (for Iteration #3) WIP
+## Breakdown of responsibilities (for Iteration #3)
 
 * **Hassan Yusuf**: JUnit Test
 * **Zhe Ji**: Main Class, Scheduler
 * **Simon Yacoub**: Floor, Building
-* **Jia Chen Huang**: ElevatorSystem
+* **Jia Chen Huang**: ElevatorSystem class, basic error handling
 * **Reflection on how concurrency control at the scheduler changed from Iteration 2 to Iteration 3.**
-* placeholder
